@@ -6,8 +6,7 @@ import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
-class BufferedImageFileLoader(imageFilename: String)
-    extends FileLoader[BufferedImage] {
+class BufferedImageFileLoader(image: File) extends FileLoader[BufferedImage] {
   override def load(): BufferedImage =
-    ImageIO.read(new File(imageFilename))
+    ImageIO.read(image)
 }

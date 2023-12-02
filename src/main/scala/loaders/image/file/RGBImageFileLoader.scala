@@ -6,13 +6,15 @@ import loaders.external.file.BufferedImageFileLoader
 import loaders.image.ImageLoader
 import models.image.RGBImage
 
+import java.io.File
+
 class RGBImageFileLoader(
-  imageFilename: String,
+  image: File,
   javaImageToRGBImageConverter: BufferedImageToRGBImageConverter)
     extends FileLoader[RGBImage]
     with ImageLoader[RGBImage] {
   override def load(): RGBImage =
     javaImageToRGBImageConverter.convert(
-      new BufferedImageFileLoader(imageFilename).load()
+      new BufferedImageFileLoader(image).load()
     )
 }
