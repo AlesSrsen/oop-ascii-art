@@ -1,6 +1,6 @@
-package console.views.pages.generic
+package ui.views.pages.generic
 
-import console.views.pages.TextPage
+import ui.views.pages.TextPage
 
 class ErrorResponse(errorMessage: String = "Error") extends TextPage {
   override def render(): String = errorMessage

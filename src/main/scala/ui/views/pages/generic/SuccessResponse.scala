@@ -1,6 +1,6 @@
-package console.views.pages.generic
+package ui.views.pages.generic
 
-import console.views.pages.TextPage
+import ui.views.pages.TextPage
 
 class SuccessResponse(successMessage: String) extends TextPage {
   override def render(): String = successMessage
