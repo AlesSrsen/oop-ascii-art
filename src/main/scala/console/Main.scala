@@ -4,8 +4,9 @@ import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiAsciiImageConver
 import converters.image.gray.RGBImageToGrayscaleImageConverter
 import converters.image.rgb.BufferedImageToRGBImageConverter
 import exporters.image.AsciiImageExporter
-import filters.image.BrightnessGrayscaleImageFilter
+import filters.image.{BrightnessGrayscaleImageFilter, BrightnessImageFilter, MixedImageFilter}
 import loaders.image.file.RGBImageFileLoader
+import operators.GrayscalePixelOperator
 
 import java.io.{File, FileOutputStream}
 
@@ -14,10 +15,16 @@ object Main extends App {
     new File("src/main/resources/images/linear_gradient.png"),
     new BufferedImageToRGBImageConverter).load();
   val grayscaleImage = new RGBImageToGrayscaleImageConverter().convert(appImage)
-  val brightGrayscaleImage =
-    new BrightnessGrayscaleImageFilter(-10).applyFilter(grayscaleImage)
+
+  val filter = new MixedImageFilter(
+    List(
+      new BrightnessGrayscaleImageFilter(10),
+      new BrightnessGrayscaleImageFilter(10),
+      new BrightnessGrayscaleImageFilter(10)))
+  val filteredImage = filter.applyFilter(grayscaleImage)
+
   val asciiImage = new BourkeGrayscaleImageToAsciiAsciiImageConverter()
-    .convert(brightGrayscaleImage)
+    .convert(filteredImage)
   new AsciiImageExporter(new FileOutputStream("out/image.txt"))
     .export(asciiImage)
 }

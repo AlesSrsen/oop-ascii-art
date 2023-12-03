@@ -9,8 +9,8 @@ class AsciiImageExporter(outputStream: OutputStream)
     extends ImageExporter[AsciiImage] {
   def export(image: AsciiImage): Unit =
     new StreamTextExporter(outputStream).export(
-      image.pixels
-        .map(
+      image
+        .mapRows(
           row =>
             row
               .map(pixel => pixel.getString)

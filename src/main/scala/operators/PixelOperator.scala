@@ -1,6 +1,8 @@
 package operators
 
-trait PixelOperator[T] {
+import models.pixels.Pixel
+
+trait PixelOperator[T <: Pixel] {
   def min(): T
   def max(): T
   def average(a: T, b: T): T

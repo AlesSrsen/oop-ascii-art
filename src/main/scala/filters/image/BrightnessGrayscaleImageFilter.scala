@@ -5,10 +5,10 @@ import models.pixels.GrayscalePixel
 
 class BrightnessGrayscaleImageFilter(amount: Int)
     extends ImageFilter[GrayscaleImage] {
+  require(amount >= -255 && amount <= 255)
   override def applyFilter(item: GrayscaleImage): GrayscaleImage = {
     val newPixels =
-      item.pixels.map(p =>
-        p.map(pixel => new GrayscalePixel(pixel.gray + amount)))
+      item.mapPixels(pixel => new GrayscalePixel(pixel.gray + amount))
     new GrayscaleImage(newPixels)
   }
 }
