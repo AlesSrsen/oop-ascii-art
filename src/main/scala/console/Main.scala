@@ -4,15 +4,16 @@ import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiAsciiImageConver
 import converters.image.gray.RGBImageToGrayscaleImageConverter
 import converters.image.rgb.BufferedImageToRGBImageConverter
 import exporters.image.AsciiImageExporter
-import filters.image.{BrightnessGrayscaleImageFilter, BrightnessImageFilter, MixedImageFilter}
+import filters.image.gray.flip.{XFlipGrayscaleImageFilter, YFlipGrayscaleImageFilter}
+import filters.image.MixedImageFilter
+import filters.image.gray.BrightnessGrayscaleImageFilter
 import loaders.image.file.RGBImageFileLoader
-import operators.GrayscalePixelOperator
 
 import java.io.{File, FileOutputStream}
 
 object Main extends App {
   val appImage = new RGBImageFileLoader(
-    new File("src/main/resources/images/linear_gradient.png"),
+    new File("src/main/resources/images/linear_gradient_a.png"),
     new BufferedImageToRGBImageConverter).load();
   val grayscaleImage = new RGBImageToGrayscaleImageConverter().convert(appImage)
 
@@ -20,7 +21,11 @@ object Main extends App {
     List(
       new BrightnessGrayscaleImageFilter(10),
       new BrightnessGrayscaleImageFilter(10),
-      new BrightnessGrayscaleImageFilter(10)))
+      new BrightnessGrayscaleImageFilter(10),
+      new XFlipGrayscaleImageFilter,
+      new XFlipGrayscaleImageFilter,
+      new YFlipGrayscaleImageFilter,
+    ))
   val filteredImage = filter.applyFilter(grayscaleImage)
 
   val asciiImage = new BourkeGrayscaleImageToAsciiAsciiImageConverter()

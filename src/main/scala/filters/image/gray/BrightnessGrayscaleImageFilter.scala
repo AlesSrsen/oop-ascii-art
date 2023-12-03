@@ -1,5 +1,6 @@
-package filters.image
+package filters.image.gray
 
+import filters.image.ImageFilter
 import models.image.GrayscaleImage
 import models.pixels.GrayscalePixel
 

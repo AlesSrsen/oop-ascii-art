@@ -15,6 +15,8 @@ abstract class Image[T <: Pixel] {
   def height: Int = _pixels.size
   def width: Int = _pixels.head.size
 
+  def pixels: Seq[Seq[T]] = _pixels
+
   def mapRows[O](f: Seq[T] => Seq[O]): Seq[Seq[O]] =
     _pixels.map(f)
 
