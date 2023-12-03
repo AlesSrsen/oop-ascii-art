@@ -5,7 +5,7 @@ import models.image.AsciiImage
 
 import java.io.OutputStream
 
-class AsciiImageExporter(outputStream: OutputStream)
+class StreamAsciiImageExporter(outputStream: OutputStream)
     extends ImageExporter[AsciiImage] {
   def export(image: AsciiImage): Unit =
     new StreamTextExporter(outputStream).export(

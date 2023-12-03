@@ -3,13 +3,13 @@ package console
 import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiAsciiImageConverter
 import converters.image.gray.RGBImageToGrayscaleImageConverter
 import converters.image.rgb.BufferedImageToRGBImageConverter
-import exporters.image.AsciiImageExporter
-import filters.image.gray.flip.{XFlipGrayscaleImageFilter, YFlipGrayscaleImageFilter}
+import exporters.image.StdOutAsciiImageExporter
 import filters.image.MixedImageFilter
-import filters.image.gray.BrightnessGrayscaleImageFilter
+import filters.image.gray.flip.{XFlipGrayscaleImageFilter, YFlipGrayscaleImageFilter}
+import filters.image.gray.{BrightnessGrayscaleImageFilter, InvertGrayscaleImageFilter}
 import loaders.image.file.RGBImageFileLoader
 
-import java.io.{File, FileOutputStream}
+import java.io.File
 
 object Main extends App {
   val appImage = new RGBImageFileLoader(
@@ -25,11 +25,12 @@ object Main extends App {
       new XFlipGrayscaleImageFilter,
       new XFlipGrayscaleImageFilter,
       new YFlipGrayscaleImageFilter,
+      new InvertGrayscaleImageFilter
     ))
   val filteredImage = filter.applyFilter(grayscaleImage)
 
   val asciiImage = new BourkeGrayscaleImageToAsciiAsciiImageConverter()
     .convert(filteredImage)
-  new AsciiImageExporter(new FileOutputStream("out/image.txt"))
+  new StdOutAsciiImageExporter()
     .export(asciiImage)
 }
