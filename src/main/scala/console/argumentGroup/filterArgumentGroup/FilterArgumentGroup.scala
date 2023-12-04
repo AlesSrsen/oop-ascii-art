@@ -1,10 +1,6 @@
 package console.argumentGroup.filterArgumentGroup
 
-import console.argument.filterArgument.{
-  BrightnessImageFilterArgument,
-  FlipGrayscaleImageFilterArgument,
-  GrayscaleImageFilterArgument
-}
+import console.argument.filterArgument.{BrightnessImageFilterArgument, FlipGrayscaleImageFilterArgument, GrayscaleImageFilterArgument}
 import console.argumentGroup.ArgumentGroup
 import filters.image.ImageFilter
 import models.image.GrayscaleImage

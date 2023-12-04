@@ -1,3 +1,3 @@
 package loaders
 
-trait RandomLoader[T] extends Loader[T]  {}
+trait RandomLoader[T] extends Loader[T] {}
