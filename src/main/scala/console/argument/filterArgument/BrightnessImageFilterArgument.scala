@@ -5,21 +5,6 @@ import filters.image.gray.BrightnessGrayscaleImageFilter
 import models.image.GrayscaleImage
 
 class BrightnessImageFilterArgument extends GrayscaleImageFilterArgument {
-  override def parseTopAndPop(args: Args): (Boolean, Args) =
-    parseTopAndPop(
-      args,
-      (otherArgs: Args) => {
-        if (otherArgs.length < 1)
-          throw new IllegalArgumentException("No brightness amount specified")
-        otherArgs.head.toIntOption match {
-          case Some(_) => (true, otherArgs.drop(1))
-          case None =>
-            throw new IllegalArgumentException(
-              "Brightness amount is not a number")
-        }
-      }
-    )
-
   override def specification(): Seq[String] =
     Seq(argumentName, "-255/+255")
 
@@ -29,8 +14,20 @@ class BrightnessImageFilterArgument extends GrayscaleImageFilterArgument {
     args: Args): (Option[ImageFilter[GrayscaleImage]], Args) =
     getResult(
       args,
-      (otherArgs: Args) =>
+      parseArgOptions
+    )
+
+  private def parseArgOptions = (otherArgs: Args) => {
+    if (otherArgs.length < 1)
+      throw new IllegalArgumentException("No brightness amount specified")
+    otherArgs.head.toIntOption match {
+      case Some(amount) =>
         (
-          Some(new BrightnessGrayscaleImageFilter(otherArgs.head.toInt)),
-          otherArgs.drop(1)))
+          Some(new BrightnessGrayscaleImageFilter(amount)),
+          otherArgs.drop(1)
+        )
+      case None =>
+        throw new IllegalArgumentException("Brightness amount is not a number")
+    }
+  }
 }

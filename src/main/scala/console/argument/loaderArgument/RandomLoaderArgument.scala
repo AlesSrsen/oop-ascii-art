@@ -1,12 +1,15 @@
 package console.argument.loaderArgument
+import console.argument.ArgumentWithoutOptions
 import loaders.image.RGBImageLoader
 import loaders.image.random.RGBImageRandomLoader
 
 import java.util.Random
 
-class RandomLoaderArgument extends LoaderArgument {
+class RandomLoaderArgument extends LoaderArgument with ArgumentWithoutOptions {
   override def getRGBImageLoader(args: Args): (Option[RGBImageLoader], Args) =
-    getResult(args, Some(new RGBImageRandomLoader(new Random)))
+    getResultArgumentWitoutOptions(
+      args,
+      Some(new RGBImageRandomLoader(new Random)))
 
   override def argumentName: String = "--image-random"
 }
