@@ -1,6 +1,6 @@
 package console.argumentGroup.converterArgumentGroup
 
-import console.argument.converterArgument.{BourkeGrayscaleImageToAsciiImageConverterArgument, GrayscaleImageToAsciiImageConverterArgument}
+import console.argument.converterArgument.{BourkeGrayscaleImageToAsciiImageConverterArgument, BourkeShortGrayscaleImageToAsciiImageConverterArgument, GrayscaleImageToAsciiImageConverterArgument}
 import console.argumentGroup.ArgumentGroup
 import converters.image.ImageToImageConverter
 import models.image.{AsciiImage, GrayscaleImage}
@@ -11,7 +11,7 @@ class ConverterArgumentGroup extends ArgumentGroup {
     : Seq[GrayscaleImageToAsciiImageConverterArgument] =
     Seq(
       new BourkeGrayscaleImageToAsciiImageConverterArgument,
-      new BourkeGrayscaleImageToAsciiImageConverterArgument)
+      new BourkeShortGrayscaleImageToAsciiImageConverterArgument)
 
   def getGrayscaleImageFilter(args: Seq[String]): (
     Option[ImageToImageConverter[GrayscaleImage, AsciiImage]],

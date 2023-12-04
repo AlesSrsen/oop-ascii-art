@@ -17,9 +17,8 @@ class FileAsciiImageExporterArgument extends AsciiImageExporterArgument {
       args,
       (otherArgs: Args) => {
         if (otherArgs.length < 1)
-          throw new IllegalArgumentException("No path to image")
-        if (new File(otherArgs.head).exists())
-          throw new IllegalArgumentException("File already exists")
+          throw new IllegalArgumentException(
+            "No path supplied for: " + argumentName)
         return (
           Some(new FileAsciiImageExporter(new File(otherArgs.head))),
           otherArgs.drop(1)

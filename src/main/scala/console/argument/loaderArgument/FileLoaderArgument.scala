@@ -14,9 +14,8 @@ class FileLoaderArgument extends LoaderArgument {
       args,
       (otherArgs: Args) => {
         if (otherArgs.length < 1)
-          throw new IllegalArgumentException("No path to image")
-        if (!new File(otherArgs.head).isFile)
-          throw new IllegalArgumentException("No such file")
+          throw new IllegalArgumentException(
+            "No path to input image supplied to: " + argumentName)
         (
           Some(
             new RGBImageFileLoader(
