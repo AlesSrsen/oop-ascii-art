@@ -6,15 +6,16 @@ import models.image.GrayscaleImage
 
 class FlipGrayscaleImageFilterArgument extends GrayscaleImageFilterArgument {
   override def parseTopAndPop(args: Args): (Boolean, Args) =
-    if (args.nonEmpty && args.head == argumentName) {
-      if (args.length < 2)
-        throw new IllegalArgumentException("No direction to flip specified")
-      if (args(1) != "x" && args(1) != "y")
-        throw new IllegalArgumentException(
-          "Incorrect direction to flip specified")
-      (true, args.drop(2))
-    } else
-      (false, args)
+    parseTopAndPop(
+      args,
+      (otherArgs: Args) => {
+        if (otherArgs.length < 1)
+          throw new IllegalArgumentException("No flip direction specified")
+        if (otherArgs.head != "x" && otherArgs.head != "y")
+          throw new IllegalArgumentException("Invalid flip direction")
+        (true, otherArgs.drop(1))
+      }
+    )
 
   override def specification(): Seq[String] =
     Seq(argumentName, "x/y")
@@ -22,14 +23,14 @@ class FlipGrayscaleImageFilterArgument extends GrayscaleImageFilterArgument {
   override def argumentName: String = "--flip"
 
   override def getGrayscaleImageFilter(
-    args: Args): (Option[ImageFilter[GrayscaleImage]], Args) = {
-    val (isParsed, _) = parseTopAndPop(args)
-    if (isParsed)
-      if (args(1) == "x")
-        (Some(new XFlipGrayscaleImageFilter), args.drop(2))
-      else
-        (Some(new YFlipGrayscaleImageFilter), args.drop(2))
-    else
-      (None, args)
-  }
+    args: Args): (Option[ImageFilter[GrayscaleImage]], Args) =
+    getResult(
+      args,
+      (otherArgs: Args) =>
+        (
+          if (otherArgs.head == "x")
+            Some(new XFlipGrayscaleImageFilter())
+          else
+            Some(new YFlipGrayscaleImageFilter()),
+          otherArgs.drop(1)))
 }
