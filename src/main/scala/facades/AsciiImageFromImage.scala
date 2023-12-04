@@ -4,12 +4,12 @@ import converters.image.ImageToImageConverter
 import converters.image.gray.RGBImageToGrayscaleImageConverter
 import exporters.image.ImageExporter
 import filters.image.ImageFilter
-import loaders.image.ImageLoader
-import models.image.{AsciiImage, GrayscaleImage, RGBImage}
+import loaders.image.RGBImageLoader
+import models.image.{AsciiImage, GrayscaleImage}
 
 class AsciiImageFromImage {
   def createAsciiImageFromImage(
-    loader: ImageLoader[RGBImage],
+    loader: RGBImageLoader,
     filters: Iterable[ImageFilter[GrayscaleImage]],
     converter: ImageToImageConverter[GrayscaleImage, AsciiImage],
     exporters: Iterable[ImageExporter[AsciiImage]]): Unit = {

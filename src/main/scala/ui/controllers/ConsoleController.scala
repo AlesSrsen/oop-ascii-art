@@ -8,12 +8,14 @@ import facades.AsciiImageFromImage
 import filters.image.ImageFilter
 import filters.image.gray.flip.{XFlipGrayscaleImageFilter, YFlipGrayscaleImageFilter}
 import filters.image.gray.{BrightnessGrayscaleImageFilter, InvertGrayscaleImageFilter}
-import loaders.image.ImageLoader
+import loaders.image.RGBImageLoader
 import loaders.image.file.RGBImageFileLoader
-import models.image.{AsciiImage, GrayscaleImage, RGBImage}
+import loaders.image.random.RGBImageRandomLoader
+import models.image.{AsciiImage, GrayscaleImage}
 import ui.views.View
 
 import java.io.File
+import java.util.Random
 
 class ConsoleController(args: Seq[String], view: View) extends Controller {
   override def run(): Unit = {
@@ -26,7 +28,7 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
   }
 
   // TODO fix other sources
-  private def parseLoader(args: Seq[String]): ImageLoader[RGBImage] = {
+  private def parseLoader(args: Seq[String]): RGBImageLoader = {
     var foundSource = false
     var sourceIndex = -1
 
@@ -38,9 +40,17 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
               "Multiple input sources specified")
           foundSource = true
           sourceIndex = y + 1
+        case "--random" =>
+          if (foundSource)
+            throw new IllegalArgumentException(
+              "Multiple input sources specified")
+          foundSource = true
+          sourceIndex = y
         case _ =>
       }
 
+    if (args(sourceIndex) == "--random")
+      return new RGBImageRandomLoader(new Random)
     if (!foundSource || sourceIndex >= args.length || sourceIndex < 1)
       throw new IllegalArgumentException("Invalid image source specified")
 
