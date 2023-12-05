@@ -1,11 +1,11 @@
 package loaders.image.file
 
+import asciiApp.models.image.Image
+import asciiApp.models.pixels.RGBPixel
 import converters.image.rgb.BufferedImageToRGBImageConverter
 import loaders.FileLoader
 import loaders.external.file.BufferedImageFileLoader
 import loaders.image.RGBImageLoader
-import models.image.Image
-import models.pixels.RGBPixel
 
 import java.io.File
 import java.nio.file.Paths

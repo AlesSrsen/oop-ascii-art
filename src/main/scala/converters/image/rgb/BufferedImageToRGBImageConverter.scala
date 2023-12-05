@@ -1,9 +1,9 @@
 package converters.image.rgb
 
+import asciiApp.models.grid.PixelGrid
+import asciiApp.models.image.Image
+import asciiApp.models.pixels.RGBPixel
 import converters.Converter
-import models.grid.PixelGrid
-import models.image.Image
-import models.pixels.RGBPixel
 
 import java.awt.image.BufferedImage
 

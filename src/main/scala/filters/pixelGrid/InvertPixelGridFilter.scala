@@ -1,7 +1,7 @@
 package filters.pixelGrid
 
-import models.grid.PixelGrid
-import models.pixels.Pixel
+import asciiApp.models.grid.PixelGrid
+import asciiApp.models.pixels.Pixel
 import operators.PixelOperator
 
 class InvertPixelGridFilter[O <: Pixel](pixelOperator: PixelOperator[O])

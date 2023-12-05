@@ -1,7 +1,7 @@
 package filters.pixelGrid
 
+import asciiApp.models.grid.PixelGrid
+import asciiApp.models.pixels.Pixel
 import filters.Filter
-import models.grid.PixelGrid
-import models.pixels.Pixel
 
 trait PixelGridFilter[O <: Pixel] extends Filter[PixelGrid[O]] {}

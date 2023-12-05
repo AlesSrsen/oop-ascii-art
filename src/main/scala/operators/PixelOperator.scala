@@ -1,6 +1,6 @@
 package operators
 
-import models.pixels.Pixel
+import asciiApp.models.pixels.Pixel
 
 trait PixelOperator[T <: Pixel] {
   def min(): T

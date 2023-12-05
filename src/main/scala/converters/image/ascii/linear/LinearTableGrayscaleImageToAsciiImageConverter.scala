@@ -1,8 +1,8 @@
 package converters.image.ascii.linear
 
+import asciiApp.models.image.Image
+import asciiApp.models.pixels.{AsciiPixel, GrayscalePixel}
 import converters.image.ImageToImageConverter
-import models.image.Image
-import models.pixels.{AsciiPixel, GrayscalePixel}
 
 trait LinearTableGrayscaleImageToAsciiImageConverter
     extends ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] {

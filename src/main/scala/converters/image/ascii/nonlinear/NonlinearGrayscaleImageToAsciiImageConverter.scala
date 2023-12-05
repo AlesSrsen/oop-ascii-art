@@ -1,8 +1,8 @@
 package converters.image.ascii.nonlinear
 
+import asciiApp.models.image.Image
+import asciiApp.models.pixels.{AsciiPixel, GrayscalePixel}
 import converters.image.ImageToImageConverter
-import models.image.Image
-import models.pixels.{AsciiPixel, GrayscalePixel}
 
 import scala.annotation.tailrec
 import scala.collection.SortedMap

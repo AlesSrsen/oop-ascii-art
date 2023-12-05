@@ -1,9 +1,9 @@
 package filters.image.generic
 
+import asciiApp.models.image.Image
+import asciiApp.models.pixels.Pixel
 import filters.image.ImageFilter
 import filters.pixelGrid.BrightnessPixelGridFilter
-import models.image.Image
-import models.pixels.Pixel
 import operators.PixelOperator
 
 class BrightnessImageFilter[T <: Pixel](

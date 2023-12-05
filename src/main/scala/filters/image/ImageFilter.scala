@@ -1,6 +1,6 @@
 package filters.image
 
+import asciiApp.models.image.Image
 import filters.Filter
-import models.image.Image
 
 trait ImageFilter[T <: Image[_]] extends Filter[T] {}

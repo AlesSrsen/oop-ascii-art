@@ -1,9 +1,9 @@
 package filters.image.generic
 
+import asciiApp.models.image.Image
+import asciiApp.models.pixels.Pixel
 import filters.image.ImageFilter
 import filters.pixelGrid.InvertPixelGridFilter
-import models.image.Image
-import models.pixels.Pixel
 import operators.PixelOperator
 
 class InvertImageFilter[T <: Pixel](pixelOperator: PixelOperator[T])

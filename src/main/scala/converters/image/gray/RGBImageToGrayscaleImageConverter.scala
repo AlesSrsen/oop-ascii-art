@@ -1,8 +1,8 @@
 package converters.image.gray
 
+import asciiApp.models.image.Image
+import asciiApp.models.pixels.{GrayscalePixel, RGBPixel}
 import converters.image.ImageToImageConverter
-import models.image.Image
-import models.pixels.{GrayscalePixel, RGBPixel}
 
 class RGBImageToGrayscaleImageConverter
     extends ImageToImageConverter[Image[RGBPixel], Image[GrayscalePixel]] {

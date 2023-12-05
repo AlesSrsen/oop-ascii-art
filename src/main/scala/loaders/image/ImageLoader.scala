@@ -1,6 +1,6 @@
 package loaders.image
 
+import asciiApp.models.image.Image
 import loaders.Loader
-import models.image.Image
 
 trait ImageLoader[T <: Image[_]] extends Loader[T] {}

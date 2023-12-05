@@ -1,10 +1,10 @@
 package loaders.image.random
 
+import asciiApp.models.grid.PixelGrid
+import asciiApp.models.image.Image
+import asciiApp.models.pixels.RGBPixel
 import loaders.RandomLoader
 import loaders.image.RGBImageLoader
-import models.grid.PixelGrid
-import models.image.Image
-import models.pixels.RGBPixel
 
 import scala.collection.mutable
 import scala.util.Random

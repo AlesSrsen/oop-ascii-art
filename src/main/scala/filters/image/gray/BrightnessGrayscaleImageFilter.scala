@@ -1,9 +1,9 @@
 package filters.image.gray
 
+import asciiApp.models.image.Image
+import asciiApp.models.pixels.GrayscalePixel
 import filters.image.ImageFilter
 import filters.image.generic.BrightnessImageFilter
-import models.image.Image
-import models.pixels.GrayscalePixel
 import operators.GrayscalePixelOperator
 
 class BrightnessGrayscaleImageFilter(amount: Int)

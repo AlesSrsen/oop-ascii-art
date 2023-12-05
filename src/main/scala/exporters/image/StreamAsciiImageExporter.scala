@@ -1,8 +1,8 @@
 package exporters.image
 
+import asciiApp.models.image.Image
+import asciiApp.models.pixels.AsciiPixel
 import exporters.text.StreamTextExporter
-import models.image.Image
-import models.pixels.AsciiPixel
 
 import java.io.OutputStream
 

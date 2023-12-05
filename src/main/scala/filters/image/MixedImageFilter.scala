@@ -1,6 +1,6 @@
 package filters.image
 
-import models.image.Image
+import asciiApp.models.image.Image
 
 class MixedImageFilter[T <: Image[_]](filters: Seq[ImageFilter[T]])
     extends ImageFilter[T] {
