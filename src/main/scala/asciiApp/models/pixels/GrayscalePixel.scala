@@ -9,6 +9,6 @@ case class GrayscalePixel(_gray: Int) extends Pixel {
 }
 
 object GrayscalePixel {
-  def min() = new GrayscalePixel(0);
-  def max() = new GrayscalePixel(255);
+  def min() = new GrayscalePixel(0)
+  def max() = new GrayscalePixel(255)
 }

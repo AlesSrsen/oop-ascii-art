@@ -7,6 +7,6 @@ case class RGBPixel(_red: Int, _green: Int, _blue: Int) extends ColorPixel {
 }
 
 object RGBPixel {
-  def min() = new RGBPixel(0, 0, 0);
-  def max() = new RGBPixel(255, 255, 255);
+  def min() = new RGBPixel(0, 0, 0)
+  def max() = new RGBPixel(255, 255, 255)
 }
