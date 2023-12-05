@@ -2,6 +2,7 @@ package loaders.image.random
 
 import loaders.RandomLoader
 import loaders.image.RGBImageLoader
+import models.grid.PixelGrid
 import models.image.RGBImage
 import models.pixels.RGBPixel
 
@@ -18,7 +19,7 @@ class RGBImageRandomLoader(random: Random)
       mutable.ArraySeq
         .fill(height)(mutable.ArraySeq.fill(width)(randomPixel()).toSeq)
         .toSeq
-    new RGBImage(pixels)
+    new RGBImage(new PixelGrid(pixels))
   }
 
   private def randomPixel(): RGBPixel =

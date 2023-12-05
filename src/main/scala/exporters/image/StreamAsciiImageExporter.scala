@@ -9,7 +9,7 @@ class StreamAsciiImageExporter(outputStream: OutputStream)
     extends ImageExporter[AsciiImage] {
   def export(image: AsciiImage): Unit =
     new StreamTextExporter(outputStream).export(
-      image
+      image.pixels
         .mapRows(
           row =>
             row

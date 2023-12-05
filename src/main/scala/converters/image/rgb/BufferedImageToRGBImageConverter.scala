@@ -1,6 +1,7 @@
 package converters.image.rgb
 
 import converters.Converter
+import models.grid.PixelGrid
 import models.image.RGBImage
 import models.pixels.RGBPixel
 
@@ -18,6 +19,6 @@ class BufferedImageToRGBImageConverter
           val red = (rgb & 0xff0000) >> 16
           RGBPixel(red, green, blue)
         }
-    new RGBImage(pixelGrid)
+    new RGBImage(new PixelGrid(pixelGrid))
   }
 }

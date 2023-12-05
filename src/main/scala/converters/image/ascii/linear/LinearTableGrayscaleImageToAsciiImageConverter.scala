@@ -11,7 +11,7 @@ trait LinearTableGrayscaleImageToAsciiImageConverter
   override def convert(input: GrayscaleImage): AsciiImage = {
     require(table.nonEmpty, "Table must not be empty")
 
-    val asciiPixels = input.mapRows(_.map(pixel => {
+    val asciiPixels = input.pixels.mapRowsGrid(_.map(pixel => {
       val bucketSize = GrayscalePixel.max().gray.toFloat / (table.length - 1)
       val index = pixel.gray.toFloat / bucketSize
       AsciiPixel(table(index.toInt))

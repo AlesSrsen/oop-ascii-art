@@ -20,12 +20,13 @@ trait NonlinearGrayscaleImageToAsciiImageConverter
   def convert(grayscaleImage: GrayscaleImage): AsciiImage = {
     def sortedKeyValues = characterMapping.toSeq
 
-    val asciiPixels = grayscaleImage.mapRows(_.map(grayscalePixel => {
-      val value = grayscalePixel.gray
-      val key = findLargestSmallerEqualKeyForValue(value, sortedKeyValues)
-      val character = characterMapping(key)
-      AsciiPixel(character)
-    }))
+    val asciiPixels =
+      grayscaleImage.pixels.mapRowsGrid(_.map(grayscalePixel => {
+        val value = grayscalePixel.gray
+        val key = findLargestSmallerEqualKeyForValue(value, sortedKeyValues)
+        val character = characterMapping(key)
+        AsciiPixel(character)
+      }))
 
     new AsciiImage(asciiPixels)
   }
