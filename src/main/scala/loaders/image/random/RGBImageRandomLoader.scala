@@ -6,15 +6,15 @@ import models.grid.PixelGrid
 import models.image.Image
 import models.pixels.RGBPixel
 
-import java.util.Random
 import scala.collection.mutable
+import scala.util.Random
 
 class RGBImageRandomLoader(random: Random)
     extends RandomLoader[Image[RGBPixel]]
     with RGBImageLoader {
   override def load(): Image[RGBPixel] = {
-    val width = random.nextInt(1, 1000)
-    val height = random.nextInt(1, 1000)
+    val width = random.between(1, 1000)
+    val height = random.between(1, 1000)
     val pixels =
       mutable.ArraySeq
         .fill(height)(mutable.ArraySeq.fill(width)(randomPixel()).toSeq)
@@ -24,7 +24,7 @@ class RGBImageRandomLoader(random: Random)
 
   private def randomPixel(): RGBPixel =
     new RGBPixel(
-      random.nextInt(0, 256),
-      random.nextInt(0, 256),
-      random.nextInt(0, 256))
+      random.between(0, 256),
+      random.between(0, 256),
+      random.between(0, 256))
 }
