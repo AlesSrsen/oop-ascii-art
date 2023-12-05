@@ -16,7 +16,8 @@ class FlipGrayscaleImageFilterArgument extends GrayscaleImageFilterArgument {
     if (argumentOptions.length < 1)
       throw new IllegalArgumentException("No flip direction specified")
     if (argumentOptions.head != "x" && argumentOptions.head != "y")
-      throw new IllegalArgumentException("Invalid flip direction")
+      throw new IllegalArgumentException(
+        "Invalid flip direction: " + argumentOptions.head)
     if (argumentOptions.head == "x")
       (new XFlipImageFilter(), argumentOptions.drop(1))
     else

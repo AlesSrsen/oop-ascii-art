@@ -6,7 +6,8 @@ import models.image.Image
 import models.pixels.GrayscalePixel
 
 class BrightnessImageFilterArgument extends GrayscaleImageFilterArgument {
-  override def specification(): Seq[String] = super.specification().appended("<-255/+255>")
+  override def specification(): Seq[String] =
+    super.specification().appended("<-255/+255>")
 
   override def argumentName: String = "--brightness"
   override protected def argOptionsReducer(argumentOptions: Seq[String])
@@ -20,7 +21,8 @@ class BrightnessImageFilterArgument extends GrayscaleImageFilterArgument {
           argumentOptions.drop(1)
         )
       case None =>
-        throw new IllegalArgumentException("Brightness amount is not a number")
+        throw new IllegalArgumentException(
+          "Invalid brightness amount: " + argumentOptions.head)
     }
   }
 }

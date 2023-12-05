@@ -12,6 +12,8 @@ class FileRGBImageLoaderArgument extends RGBImageLoaderArgument {
 
   override def argumentName: String = "--image"
 
+  override def aliases: Seq[String] = Seq("-i")
+
   override protected def argOptionsReducer(
     argumentOptions: Seq[String]): (RGBImageLoader, Args) = {
     if (argumentOptions.length < 1)

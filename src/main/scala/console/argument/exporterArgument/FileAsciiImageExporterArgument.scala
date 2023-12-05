@@ -12,11 +12,13 @@ class FileAsciiImageExporterArgument extends AsciiImageExporterArgument {
 
   override def argumentName: String = "--output-file"
 
+  override def aliases: Seq[String] = Seq("-o")
+
   override protected def argOptionsReducer(
     argumentOptions: Seq[String]): (ImageExporter[Image[AsciiPixel]], Args) = {
     if (argumentOptions.length < 1)
       throw new IllegalArgumentException(
-        "No path supplied for: " + argumentName)
+        "No path to output result supplied to: " + argumentName)
     (
       new FileAsciiImageExporter(new File(argumentOptions.head)),
       argumentOptions.drop(1)
