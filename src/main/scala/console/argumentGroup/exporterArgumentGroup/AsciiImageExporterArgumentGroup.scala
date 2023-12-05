@@ -6,7 +6,7 @@ import exporters.image.ImageExporter
 import models.image.Image
 import models.pixels.AsciiPixel
 
-class ExporterArgumentGroup extends ArgumentGroup {
+class AsciiImageExporterArgumentGroup extends ArgumentGroup {
 
   override protected def arguments(): Seq[AsciiImageExporterArgument] =
     Seq(

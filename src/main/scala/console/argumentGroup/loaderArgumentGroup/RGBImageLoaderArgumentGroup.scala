@@ -1,13 +1,13 @@
 package console.argumentGroup.loaderArgumentGroup
 
-import console.argument.loaderArgument.{FileLoaderArgument, LoaderArgument, RandomLoaderArgument}
+import console.argument.loaderArgument.{FileRGBImageLoaderArgument, RGBImageLoaderArgument, RandomRGBImageLoaderArgument}
 import console.argumentGroup.ArgumentGroup
 import loaders.image.RGBImageLoader
 
-class LoaderArgumentGroup extends ArgumentGroup {
+class RGBImageLoaderArgumentGroup extends ArgumentGroup {
 
-  override protected def arguments(): Seq[LoaderArgument] =
-    Seq(new FileLoaderArgument(), new RandomLoaderArgument())
+  override protected def arguments(): Seq[RGBImageLoaderArgument] =
+    Seq(new FileRGBImageLoaderArgument(), new RandomRGBImageLoaderArgument())
 
   def getLoader(args: Seq[String]): (Option[RGBImageLoader], Seq[String]) = {
     for (arg <- arguments()) {

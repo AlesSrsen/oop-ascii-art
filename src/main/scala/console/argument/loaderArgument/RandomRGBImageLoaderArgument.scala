@@ -5,7 +5,7 @@ import loaders.image.random.RGBImageRandomLoader
 
 import scala.util.Random
 
-class RandomLoaderArgument extends LoaderArgument with ArgumentWithoutOptions {
+class RandomRGBImageLoaderArgument extends RGBImageLoaderArgument with ArgumentWithoutOptions {
   override def getRGBImageLoader(args: Args): (Option[RGBImageLoader], Args) =
     getResultArgumentWitoutOptions(
       args,

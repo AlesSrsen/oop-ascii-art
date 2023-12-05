@@ -6,7 +6,7 @@ import loaders.image.file.RGBImageFileLoader
 
 import java.io.File
 
-class FileLoaderArgument extends LoaderArgument {
+class FileRGBImageLoaderArgument extends RGBImageLoaderArgument {
   override def specification(): Seq[String] = Seq(argumentName, "path to image")
 
   override def getRGBImageLoader(args: Args): (Option[RGBImageLoader], Args) =

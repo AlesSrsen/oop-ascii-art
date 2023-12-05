@@ -1,9 +1,9 @@
 package console
 
-import console.argumentGroup.converterArgumentGroup.ConverterArgumentGroup
-import console.argumentGroup.exporterArgumentGroup.ExporterArgumentGroup
-import console.argumentGroup.filterArgumentGroup.FilterArgumentGroup
-import console.argumentGroup.loaderArgumentGroup.LoaderArgumentGroup
+import console.argumentGroup.converterArgumentGroup.GrayscaleImageToAsciiImageConverterArgumentGroup
+import console.argumentGroup.exporterArgumentGroup.AsciiImageExporterArgumentGroup
+import console.argumentGroup.filterArgumentGroup.GrayscaleImageFilterArgumentGroup
+import console.argumentGroup.loaderArgumentGroup.RGBImageLoaderArgumentGroup
 import converters.image.ImageToImageConverter
 import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiAsciiImageConverter
 import exporters.image.{ImageExporter, StdOutAsciiImageExporter}
@@ -13,10 +13,10 @@ import models.image.Image
 import models.pixels.{AsciiPixel, GrayscalePixel}
 
 class ArgumentLoader(args: Seq[String]) {
-  private val loaderArgumentGroup = new LoaderArgumentGroup
-  private val filterArgumentGroup = new FilterArgumentGroup
-  private val converterArgumentGroup = new ConverterArgumentGroup
-  private val exporterArgumentGroup = new ExporterArgumentGroup
+  private val loaderArgumentGroup = new RGBImageLoaderArgumentGroup
+  private val filterArgumentGroup = new GrayscaleImageFilterArgumentGroup
+  private val converterArgumentGroup = new GrayscaleImageToAsciiImageConverterArgumentGroup
+  private val exporterArgumentGroup = new AsciiImageExporterArgumentGroup
 
   private var _loader = Option.empty[RGBImageLoader]
   private var _filters = Seq.empty[ImageFilter[Image[GrayscalePixel]]]
