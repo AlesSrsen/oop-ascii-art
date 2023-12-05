@@ -7,6 +7,11 @@ import java.io.File
 import java.nio.file.Paths
 import javax.imageio.ImageIO
 
+/**
+ * Used to load a BufferedImage from a file
+ * Currently supports png, gif, and jpg
+ * @param image File to load
+ */
 class BufferedImageFileLoader(image: File) extends FileLoader[BufferedImage] {
   require(image.isFile, "Unable to load file: " + image.getAbsolutePath)
   require(
