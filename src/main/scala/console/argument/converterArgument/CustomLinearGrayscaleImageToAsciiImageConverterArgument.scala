@@ -1,5 +1,6 @@
 package console.argument.converterArgument
 
+import console.exceptions.MissingArgumentOptionException
 import converters.image.ImageToImageConverter
 import converters.image.ascii.linear.CustomTableGrayscaleImageToAsciiImageConverter
 import models.image.Image
@@ -17,7 +18,8 @@ class CustomLinearGrayscaleImageToAsciiImageConverterArgument
     ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]],
     Args) = {
     if (argumentOptions.isEmpty || argumentOptions.head.isEmpty)
-      throw new IllegalArgumentException("No table provided")
+      throw new MissingArgumentOptionException(
+        "No table provided for: " + argumentName)
     val table = argumentOptions.head.toSeq
     (
       new CustomTableGrayscaleImageToAsciiImageConverter(table),

@@ -1,5 +1,6 @@
 package console.argument.exporterArgument
 
+import console.exceptions.MissingArgumentOptionException
 import exporters.image.{FileAsciiImageExporter, ImageExporter}
 import models.image.Image
 import models.pixels.AsciiPixel
@@ -17,7 +18,7 @@ class FileAsciiImageExporterArgument extends AsciiImageExporterArgument {
   override protected def argOptionsReducer(
     argumentOptions: Seq[String]): (ImageExporter[Image[AsciiPixel]], Args) = {
     if (argumentOptions.length < 1)
-      throw new IllegalArgumentException(
+      throw new MissingArgumentOptionException(
         "No path to output result supplied to: " + argumentName)
     (
       new FileAsciiImageExporter(new File(argumentOptions.head)),

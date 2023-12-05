@@ -4,6 +4,7 @@ import console.argumentGroup.converterArgumentGroup.GrayscaleImageToAsciiImageCo
 import console.argumentGroup.exporterArgumentGroup.AsciiImageExporterArgumentGroup
 import console.argumentGroup.filterArgumentGroup.GrayscaleImageFilterArgumentGroup
 import console.argumentGroup.loaderArgumentGroup.RGBImageLoaderArgumentGroup
+import console.exceptions.{InvalidArgumentException, MissingArgumentException}
 import converters.image.ImageToImageConverter
 import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiAsciiImageConverter
 import exporters.image.{ImageExporter, StdOutAsciiImageExporter}
@@ -26,7 +27,7 @@ class ArgumentLoader(args: Seq[String]) {
       .empty[ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]]
   private var _exporters = Seq.empty[ImageExporter[Image[AsciiPixel]]]
 
-  private var argumentGroup = Seq(
+  private val argumentGroup = Seq(
     loaderArgumentGroup,
     filterArgumentGroup,
     converterArgumentGroup,
@@ -37,7 +38,7 @@ class ArgumentLoader(args: Seq[String]) {
     argumentGroup
       .map(arg =>
         arg.groupSpecification().map(_.mkString(" | ")).mkString("\n"))
-      .mkString("\n----\n"))
+      .mkString("\n---------------------\n") + "\n\n")
 
   def loader: RGBImageLoader = _loader.get
   def filters: Iterable[ImageFilter[Image[GrayscalePixel]]] = _filters
@@ -57,7 +58,7 @@ class ArgumentLoader(args: Seq[String]) {
       parsedInThisRound = true
       argsToParse = newArgs
     } else if (parsedLoader.isDefined && _loader.isDefined)
-      throw new IllegalArgumentException("Multiple loaders specified")
+      throw new InvalidArgumentException("Multiple loaders specified")
 
     if (!parsedInThisRound) {
       val (parsedFilter, newArgs) =
@@ -77,7 +78,7 @@ class ArgumentLoader(args: Seq[String]) {
         parsedInThisRound = true
         argsToParse = newArgs
       } else if (parsedConverter.isDefined && _converter.isDefined)
-        throw new IllegalArgumentException("Multiple converters specified")
+        throw new InvalidArgumentException("Multiple converters specified")
     }
 
     if (!parsedInThisRound) {
@@ -91,12 +92,11 @@ class ArgumentLoader(args: Seq[String]) {
     }
 
     if (!parsedInThisRound)
-      throw new IllegalArgumentException(
-        "Invalid argument: " + argsToParse.head)
+      throw new InvalidArgumentException(argsToParse.head)
   }
 
   if (_loader.isEmpty)
-    throw new IllegalArgumentException("No loader specified")
+    throw new MissingArgumentException("No loader specified")
 
   if (_converter.isEmpty)
     _converter = Some(new BourkeGrayscaleImageToAsciiAsciiImageConverter)

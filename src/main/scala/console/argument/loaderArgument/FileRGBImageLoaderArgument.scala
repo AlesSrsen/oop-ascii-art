@@ -1,5 +1,6 @@
 package console.argument.loaderArgument
 
+import console.exceptions.MissingArgumentOptionException
 import converters.image.rgb.BufferedImageToRGBImageConverter
 import loaders.image.RGBImageLoader
 import loaders.image.file.RGBImageFileLoader
@@ -17,7 +18,7 @@ class FileRGBImageLoaderArgument extends RGBImageLoaderArgument {
   override protected def argOptionsReducer(
     argumentOptions: Seq[String]): (RGBImageLoader, Args) = {
     if (argumentOptions.length < 1)
-      throw new IllegalArgumentException(
+      throw new MissingArgumentOptionException(
         "No path to input image supplied to: " + argumentName)
     (
       new RGBImageFileLoader(

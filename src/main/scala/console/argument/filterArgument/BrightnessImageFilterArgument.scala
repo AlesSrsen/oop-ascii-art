@@ -1,5 +1,6 @@
 package console.argument.filterArgument
 
+import console.exceptions.{InvalidArgumentOptionException, MissingArgumentOptionException}
 import filters.image.ImageFilter
 import filters.image.gray.BrightnessGrayscaleImageFilter
 import models.image.Image
@@ -13,7 +14,7 @@ class BrightnessImageFilterArgument extends GrayscaleImageFilterArgument {
   override protected def argOptionsReducer(argumentOptions: Seq[String])
     : (ImageFilter[Image[GrayscalePixel]], Args) = {
     if (argumentOptions.length < 1)
-      throw new IllegalArgumentException("No brightness amount specified")
+      throw new MissingArgumentOptionException("No brightness amount specified")
     argumentOptions.head.toIntOption match {
       case Some(amount) =>
         (
@@ -21,7 +22,7 @@ class BrightnessImageFilterArgument extends GrayscaleImageFilterArgument {
           argumentOptions.drop(1)
         )
       case None =>
-        throw new IllegalArgumentException(
+        throw new InvalidArgumentOptionException(
           "Invalid brightness amount: " + argumentOptions.head)
     }
   }
