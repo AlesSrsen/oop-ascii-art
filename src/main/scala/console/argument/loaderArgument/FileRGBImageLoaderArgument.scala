@@ -7,23 +7,20 @@ import loaders.image.file.RGBImageFileLoader
 import java.io.File
 
 class FileRGBImageLoaderArgument extends RGBImageLoaderArgument {
-  override def specification(): Seq[String] = Seq(argumentName, "path to image")
-
-  override def getRGBImageLoader(args: Args): (Option[RGBImageLoader], Args) =
-    getResult(
-      args,
-      (otherArgs: Args) => {
-        if (otherArgs.length < 1)
-          throw new IllegalArgumentException(
-            "No path to input image supplied to: " + argumentName)
-        (
-          Some(
-            new RGBImageFileLoader(
-              new File(otherArgs.head),
-              new BufferedImageToRGBImageConverter)),
-          otherArgs.drop(1))
-      }
-    )
+  override def specification(): Seq[String] =
+    super.specification().appended("<path>")
 
   override def argumentName: String = "--image"
+
+  override protected def argOptionsReducer(
+    argumentOptions: Seq[String]): (RGBImageLoader, Args) = {
+    if (argumentOptions.length < 1)
+      throw new IllegalArgumentException(
+        "No path to input image supplied to: " + argumentName)
+    (
+      new RGBImageFileLoader(
+        new File(argumentOptions.head),
+        new BufferedImageToRGBImageConverter),
+      argumentOptions.drop(1))
+  }
 }

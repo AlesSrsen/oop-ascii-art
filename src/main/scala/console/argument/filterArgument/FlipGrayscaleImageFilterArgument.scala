@@ -7,23 +7,19 @@ import models.pixels.GrayscalePixel
 
 class FlipGrayscaleImageFilterArgument extends GrayscaleImageFilterArgument {
   override def specification(): Seq[String] =
-    Seq(argumentName, "x/y")
+    super.specification().appended("<x/y>")
 
   override def argumentName: String = "--flip"
 
-  override def getGrayscaleImageFilter(
-    args: Args): (Option[ImageFilter[Image[GrayscalePixel]]], Args) =
-    getResult(
-      args,
-      (otherArgs: Args) => {
-        if (otherArgs.length < 1)
-          throw new IllegalArgumentException("No flip direction specified")
-        if (otherArgs.head != "x" && otherArgs.head != "y")
-          throw new IllegalArgumentException("Invalid flip direction")
-        if (otherArgs.head == "x")
-          return (Some(new XFlipImageFilter()), otherArgs.drop(1))
-        else
-          return (Some(new YFlipImageFilter()), otherArgs.drop(1))
-      }
-    )
+  override protected def argOptionsReducer(argumentOptions: Seq[String])
+    : (ImageFilter[Image[GrayscalePixel]], Args) = {
+    if (argumentOptions.length < 1)
+      throw new IllegalArgumentException("No flip direction specified")
+    if (argumentOptions.head != "x" && argumentOptions.head != "y")
+      throw new IllegalArgumentException("Invalid flip direction")
+    if (argumentOptions.head == "x")
+      (new XFlipImageFilter(), argumentOptions.drop(1))
+    else
+      (new YFlipImageFilter(), argumentOptions.drop(1))
+  }
 }

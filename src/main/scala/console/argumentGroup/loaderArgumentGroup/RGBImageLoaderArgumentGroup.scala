@@ -4,17 +4,8 @@ import console.argument.loaderArgument.{FileRGBImageLoaderArgument, RGBImageLoad
 import console.argumentGroup.ArgumentGroup
 import loaders.image.RGBImageLoader
 
-class RGBImageLoaderArgumentGroup extends ArgumentGroup {
+class RGBImageLoaderArgumentGroup extends ArgumentGroup[RGBImageLoader] {
 
   override protected def arguments(): Seq[RGBImageLoaderArgument] =
     Seq(new FileRGBImageLoaderArgument(), new RandomRGBImageLoaderArgument())
-
-  def getLoader(args: Seq[String]): (Option[RGBImageLoader], Seq[String]) = {
-    for (arg <- arguments()) {
-      val (loader, newArgs) = arg.getRGBImageLoader(args)
-      if (loader.isDefined) return (Some(loader.get), newArgs)
-    }
-    (None, args)
-  }
-
 }

@@ -8,21 +8,20 @@ import models.pixels.{AsciiPixel, GrayscalePixel}
 class CustomLinearGrayscaleImageToAsciiImageConverterArgument
     extends GrayscaleImageToAsciiImageConverterArgument {
 
+  override def specification(): Seq[String] =
+    super.specification().appended("<table>")
+
   override def argumentName: String = "--table-custom"
 
-  override def getGrayscaleImageToAsciiImageConverter(args: Args): (
-    Option[ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]],
-    Args) =
-    getResult(
-      args,
-      (argOptions) => {
-        if (argOptions.isEmpty || argOptions.head.isEmpty)
-          throw new IllegalArgumentException("No table provided")
-        val table = argOptions.head.toSeq
-        return (
-          Some(new CustomTableGrayscaleImageToAsciiImageConverter(table)),
-          argOptions.drop(1))
-      }
+  override protected def argOptionsReducer(argumentOptions: Seq[String]): (
+    ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]],
+    Args) = {
+    if (argumentOptions.isEmpty || argumentOptions.head.isEmpty)
+      throw new IllegalArgumentException("No table provided")
+    val table = argumentOptions.head.toSeq
+    (
+      new CustomTableGrayscaleImageToAsciiImageConverter(table),
+      argumentOptions.drop(1)
     )
-
+  }
 }

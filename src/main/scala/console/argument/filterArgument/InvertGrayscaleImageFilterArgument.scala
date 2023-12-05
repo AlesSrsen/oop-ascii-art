@@ -8,13 +8,9 @@ import models.pixels.GrayscalePixel
 
 class InvertGrayscaleImageFilterArgument
     extends GrayscaleImageFilterArgument
-    with ArgumentWithoutOptions {
+    with ArgumentWithoutOptions[ImageFilter[Image[GrayscalePixel]]] {
   override def argumentName: String = "--invert"
 
-  override def getGrayscaleImageFilter(
-    args: Args): (Option[ImageFilter[Image[GrayscalePixel]]], Args) =
-    getResultArgumentWitoutOptions(
-      args,
-      Some(new InvertGrayscaleImageFilter)
-    )
+  override protected def createInstance: ImageFilter[Image[GrayscalePixel]] =
+    new InvertGrayscaleImageFilter
 }

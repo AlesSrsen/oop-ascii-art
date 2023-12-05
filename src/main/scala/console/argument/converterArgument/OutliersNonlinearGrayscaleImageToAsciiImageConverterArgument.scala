@@ -8,15 +8,12 @@ import models.pixels.{AsciiPixel, GrayscalePixel}
 
 class OutliersNonlinearGrayscaleImageToAsciiImageConverterArgument
     extends GrayscaleImageToAsciiImageConverterArgument
-    with ArgumentWithoutOptions {
+    with ArgumentWithoutOptions[
+      ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]] {
 
   override def argumentName: String = "--nonlinear-outliers"
 
-  override def getGrayscaleImageToAsciiImageConverter(args: Args): (
-    Option[ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]],
-    Args) =
-    getResultArgumentWitoutOptions(
-      args,
-      Some(new OutliersNonlinearGrayscaleImageToAsciiImageConverter))
-
+  override protected def createInstance
+    : ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] =
+    new OutliersNonlinearGrayscaleImageToAsciiImageConverter
 }

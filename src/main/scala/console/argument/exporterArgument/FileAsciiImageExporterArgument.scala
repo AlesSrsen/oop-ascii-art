@@ -8,22 +8,18 @@ import java.io.File
 
 class FileAsciiImageExporterArgument extends AsciiImageExporterArgument {
   override def specification(): Seq[String] =
-    Seq(argumentName, "path to create output file")
+    super.specification().appended("<path>")
 
   override def argumentName: String = "--output-file"
 
-  override def getAsciiImageExporter(
-    args: Args): (Option[ImageExporter[Image[AsciiPixel]]], Args) =
-    getResult(
-      args,
-      (otherArgs: Args) => {
-        if (otherArgs.length < 1)
-          throw new IllegalArgumentException(
-            "No path supplied for: " + argumentName)
-        return (
-          Some(new FileAsciiImageExporter(new File(otherArgs.head))),
-          otherArgs.drop(1)
-        )
-      }
+  override protected def argOptionsReducer(
+    argumentOptions: Seq[String]): (ImageExporter[Image[AsciiPixel]], Args) = {
+    if (argumentOptions.length < 1)
+      throw new IllegalArgumentException(
+        "No path supplied for: " + argumentName)
+    (
+      new FileAsciiImageExporter(new File(argumentOptions.head)),
+      argumentOptions.drop(1)
     )
+  }
 }

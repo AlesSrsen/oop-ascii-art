@@ -8,13 +8,11 @@ import models.pixels.{AsciiPixel, GrayscalePixel}
 
 class BourkeShortGrayscaleImageToAsciiImageConverterArgument
     extends GrayscaleImageToAsciiImageConverterArgument
-    with ArgumentWithoutOptions {
+    with ArgumentWithoutOptions[
+      ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]] {
   override def argumentName: String = "--table-bourke-short"
 
-  override def getGrayscaleImageToAsciiImageConverter(args: Args): (
-    Option[ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]],
-    Args) =
-    getResultArgumentWitoutOptions(
-      args,
-      Some(new ShortBourkeGrayscaleImageToAsciiAsciiImageConverter))
+  override protected def createInstance
+    : ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] =
+    new ShortBourkeGrayscaleImageToAsciiAsciiImageConverter
 }

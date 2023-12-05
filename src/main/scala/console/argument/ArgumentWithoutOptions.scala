@@ -1,8 +1,8 @@
 package console.argument
 
-trait ArgumentWithoutOptions extends Argument {
-  protected def getResultArgumentWitoutOptions[T](
-    args: Args,
-    instanceOption: Option[T]): (Option[T], Args) =
-    getResult(args, (rest) => (instanceOption, rest))
+trait ArgumentWithoutOptions[T] extends Argument[T] {
+  override protected def argOptionsReducer(
+                                            argumentOptions: Seq[String]): (T, Args) = (createInstance, argumentOptions)
+
+  protected def createInstance: T
 }

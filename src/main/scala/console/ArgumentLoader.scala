@@ -15,7 +15,8 @@ import models.pixels.{AsciiPixel, GrayscalePixel}
 class ArgumentLoader(args: Seq[String]) {
   private val loaderArgumentGroup = new RGBImageLoaderArgumentGroup
   private val filterArgumentGroup = new GrayscaleImageFilterArgumentGroup
-  private val converterArgumentGroup = new GrayscaleImageToAsciiImageConverterArgumentGroup
+  private val converterArgumentGroup =
+    new GrayscaleImageToAsciiImageConverterArgumentGroup
   private val exporterArgumentGroup = new AsciiImageExporterArgumentGroup
 
   private var _loader = Option.empty[RGBImageLoader]
@@ -24,6 +25,19 @@ class ArgumentLoader(args: Seq[String]) {
     Option
       .empty[ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]]
   private var _exporters = Seq.empty[ImageExporter[Image[AsciiPixel]]]
+
+  private var argumentGroup = Seq(
+    loaderArgumentGroup,
+    filterArgumentGroup,
+    converterArgumentGroup,
+    exporterArgumentGroup
+  )
+
+  print(
+    argumentGroup
+      .map(arg =>
+        arg.groupSpecification().map(_.mkString(" | ")).mkString("\n"))
+      .mkString("\n----\n"))
 
   def loader: RGBImageLoader = _loader.get
   def filters: Iterable[ImageFilter[Image[GrayscalePixel]]] = _filters
@@ -37,7 +51,7 @@ class ArgumentLoader(args: Seq[String]) {
   while (argsToParse.nonEmpty) {
     var parsedInThisRound = false
 
-    val (parsedLoader, newArgs) = loaderArgumentGroup.getLoader(argsToParse)
+    val (parsedLoader, newArgs) = loaderArgumentGroup.tryParseTop(argsToParse)
     if (parsedLoader.isDefined && _loader.isEmpty) {
       _loader = parsedLoader
       parsedInThisRound = true
@@ -47,7 +61,7 @@ class ArgumentLoader(args: Seq[String]) {
 
     if (!parsedInThisRound) {
       val (parsedFilter, newArgs) =
-        filterArgumentGroup.getGrayscaleImageFilter(argsToParse)
+        filterArgumentGroup.tryParseTop(argsToParse)
       if (parsedFilter.isDefined) {
         _filters :+= parsedFilter.get
         parsedInThisRound = true
@@ -57,7 +71,7 @@ class ArgumentLoader(args: Seq[String]) {
 
     if (!parsedInThisRound) {
       val (parsedConverter, newArgs) =
-        converterArgumentGroup.getGrayscaleImageFilter(argsToParse)
+        converterArgumentGroup.tryParseTop(argsToParse)
       if (parsedConverter.isDefined && _converter.isEmpty) {
         _converter = parsedConverter
         parsedInThisRound = true
@@ -68,7 +82,7 @@ class ArgumentLoader(args: Seq[String]) {
 
     if (!parsedInThisRound) {
       val (parsedExporter, newArgs) =
-        exporterArgumentGroup.getAsciiImageExporter(argsToParse)
+        exporterArgumentGroup.tryParseTop(argsToParse)
       if (parsedExporter.isDefined) {
         _exporters :+= parsedExporter.get
         parsedInThisRound = true

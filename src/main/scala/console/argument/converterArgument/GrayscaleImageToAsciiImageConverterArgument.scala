@@ -5,8 +5,6 @@ import converters.image.ImageToImageConverter
 import models.image.Image
 import models.pixels.{AsciiPixel, GrayscalePixel}
 
-trait GrayscaleImageToAsciiImageConverterArgument extends Argument {
-  def getGrayscaleImageToAsciiImageConverter(args: Args): (
-    Option[ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]],
-    Args)
-}
+trait GrayscaleImageToAsciiImageConverterArgument
+    extends Argument[
+      ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]] {}

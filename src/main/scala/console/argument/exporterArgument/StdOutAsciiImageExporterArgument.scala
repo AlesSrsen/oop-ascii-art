@@ -7,10 +7,9 @@ import models.pixels.AsciiPixel
 
 class StdOutAsciiImageExporterArgument
     extends AsciiImageExporterArgument
-    with ArgumentWithoutOptions {
+    with ArgumentWithoutOptions[ImageExporter[Image[AsciiPixel]]] {
   override def argumentName: String = "--output-console"
 
-  override def getAsciiImageExporter(
-    args: Args): (Option[ImageExporter[Image[AsciiPixel]]], Args) =
-    getResultArgumentWitoutOptions(args, Some(new StdOutAsciiImageExporter))
+  override protected def createInstance: ImageExporter[Image[AsciiPixel]] =
+    new StdOutAsciiImageExporter
 }
