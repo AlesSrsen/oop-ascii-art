@@ -1,5 +1,6 @@
 package loaders.image
 
-import models.image.RGBImage
+import models.image.Image
+import models.pixels.RGBPixel
 
-trait RGBImageLoader extends ImageLoader[RGBImage] {}
+trait RGBImageLoader extends ImageLoader[Image[RGBPixel]] {}

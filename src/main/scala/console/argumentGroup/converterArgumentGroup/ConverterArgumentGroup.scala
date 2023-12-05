@@ -3,7 +3,8 @@ package console.argumentGroup.converterArgumentGroup
 import console.argument.converterArgument.{BourkeGrayscaleImageToAsciiImageConverterArgument, BourkeShortGrayscaleImageToAsciiImageConverterArgument, GrayscaleImageToAsciiImageConverterArgument}
 import console.argumentGroup.ArgumentGroup
 import converters.image.ImageToImageConverter
-import models.image.{AsciiImage, GrayscaleImage}
+import models.image.Image
+import models.pixels.{AsciiPixel, GrayscalePixel}
 
 class ConverterArgumentGroup extends ArgumentGroup {
 
@@ -14,7 +15,7 @@ class ConverterArgumentGroup extends ArgumentGroup {
       new BourkeShortGrayscaleImageToAsciiImageConverterArgument)
 
   def getGrayscaleImageFilter(args: Seq[String]): (
-    Option[ImageToImageConverter[GrayscaleImage, AsciiImage]],
+    Option[ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]],
     Seq[String]) = {
     for (arg <- arguments()) {
       val (loader, newArgs) = arg.getGrayscaleImageToAsciiImageConverter(args)

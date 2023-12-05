@@ -1,7 +1,8 @@
 package console.argument.exporterArgument
 
 import exporters.image.{FileAsciiImageExporter, ImageExporter}
-import models.image.AsciiImage
+import models.image.Image
+import models.pixels.AsciiPixel
 
 import java.io.File
 
@@ -12,7 +13,7 @@ class FileAsciiImageExporterArgument extends AsciiImageExporterArgument {
   override def argumentName: String = "--output-file"
 
   override def getAsciiImageExporter(
-    args: Args): (Option[ImageExporter[AsciiImage]], Args) =
+    args: Args): (Option[ImageExporter[Image[AsciiPixel]]], Args) =
     getResult(
       args,
       (otherArgs: Args) => {

@@ -2,7 +2,8 @@ package console.argument.exporterArgument
 
 import console.argument.ArgumentWithoutOptions
 import exporters.image.{ImageExporter, StdOutAsciiImageExporter}
-import models.image.AsciiImage
+import models.image.Image
+import models.pixels.AsciiPixel
 
 class StdOutAsciiImageExporterArgument
     extends AsciiImageExporterArgument
@@ -10,6 +11,6 @@ class StdOutAsciiImageExporterArgument
   override def argumentName: String = "--output-console"
 
   override def getAsciiImageExporter(
-    args: Args): (Option[ImageExporter[AsciiImage]], Args) =
+    args: Args): (Option[ImageExporter[Image[AsciiPixel]]], Args) =
     getResultArgumentWitoutOptions(args, Some(new StdOutAsciiImageExporter))
 }

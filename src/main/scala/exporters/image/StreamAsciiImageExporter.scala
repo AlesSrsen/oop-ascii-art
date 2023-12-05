@@ -1,13 +1,14 @@
 package exporters.image
 
 import exporters.text.StreamTextExporter
-import models.image.AsciiImage
+import models.image.Image
+import models.pixels.AsciiPixel
 
 import java.io.OutputStream
 
 class StreamAsciiImageExporter(outputStream: OutputStream)
-    extends ImageExporter[AsciiImage] {
-  def export(image: AsciiImage): Unit =
+    extends ImageExporter[Image[AsciiPixel]] {
+  def export(image: Image[AsciiPixel]): Unit =
     new StreamTextExporter(outputStream).export(
       image.pixels
         .mapRows(

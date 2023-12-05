@@ -1,13 +1,13 @@
 package filters.image.gray
 
 import filters.image.ImageFilter
-import filters.pixelGrid.InvertPixelGridFilter
-import models.image.GrayscaleImage
+import filters.image.generic.InvertImageFilter
+import models.image.Image
+import models.pixels.GrayscalePixel
 import operators.GrayscalePixelOperator
 
-class InvertGrayscaleImageFilter extends ImageFilter[GrayscaleImage] {
-  override def applyFilter(item: GrayscaleImage): GrayscaleImage =
-    new GrayscaleImage(
-      new InvertPixelGridFilter(new GrayscalePixelOperator)
-        .applyFilter(item.pixels))
+class InvertGrayscaleImageFilter extends ImageFilter[Image[GrayscalePixel]] {
+  override def applyFilter(item: Image[GrayscalePixel]): Image[GrayscalePixel] =
+    new InvertImageFilter(new GrayscalePixelOperator)
+      .applyFilter(item)
 }

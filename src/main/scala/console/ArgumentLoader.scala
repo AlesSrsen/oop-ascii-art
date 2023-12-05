@@ -9,7 +9,8 @@ import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiAsciiImageConver
 import exporters.image.{ImageExporter, StdOutAsciiImageExporter}
 import filters.image.ImageFilter
 import loaders.image.RGBImageLoader
-import models.image.{AsciiImage, GrayscaleImage}
+import models.image.Image
+import models.pixels.{AsciiPixel, GrayscalePixel}
 
 class ArgumentLoader(args: Seq[String]) {
   private val loaderArgumentGroup = new LoaderArgumentGroup
@@ -18,16 +19,18 @@ class ArgumentLoader(args: Seq[String]) {
   private val exporterArgumentGroup = new ExporterArgumentGroup
 
   private var _loader = Option.empty[RGBImageLoader]
-  private var _filters = Seq.empty[ImageFilter[GrayscaleImage]]
+  private var _filters = Seq.empty[ImageFilter[Image[GrayscalePixel]]]
   private var _converter =
-    Option.empty[ImageToImageConverter[GrayscaleImage, AsciiImage]]
-  private var _exporters = Seq.empty[ImageExporter[AsciiImage]]
+    Option
+      .empty[ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]]
+  private var _exporters = Seq.empty[ImageExporter[Image[AsciiPixel]]]
 
   def loader: RGBImageLoader = _loader.get
-  def filters: Iterable[ImageFilter[GrayscaleImage]] = _filters
-  def converter: ImageToImageConverter[GrayscaleImage, AsciiImage] =
+  def filters: Iterable[ImageFilter[Image[GrayscalePixel]]] = _filters
+  def converter
+    : ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] =
     _converter.get
-  def exporters: Iterable[ImageExporter[AsciiImage]] = _exporters
+  def exporters: Iterable[ImageExporter[Image[AsciiPixel]]] = _exporters
 
   private var argsToParse = args
 

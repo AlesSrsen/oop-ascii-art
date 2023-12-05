@@ -2,7 +2,8 @@ package console.argument.filterArgument
 
 import filters.image.ImageFilter
 import filters.image.gray.BrightnessGrayscaleImageFilter
-import models.image.GrayscaleImage
+import models.image.Image
+import models.pixels.GrayscalePixel
 
 class BrightnessImageFilterArgument extends GrayscaleImageFilterArgument {
   override def specification(): Seq[String] =
@@ -11,7 +12,7 @@ class BrightnessImageFilterArgument extends GrayscaleImageFilterArgument {
   override def argumentName: String = "--brightness"
 
   override def getGrayscaleImageFilter(
-    args: Args): (Option[ImageFilter[GrayscaleImage]], Args) =
+    args: Args): (Option[ImageFilter[Image[GrayscalePixel]]], Args) =
     getResult(
       args,
       parseArgOptions

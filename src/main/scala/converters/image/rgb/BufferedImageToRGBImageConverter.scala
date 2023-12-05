@@ -2,14 +2,14 @@ package converters.image.rgb
 
 import converters.Converter
 import models.grid.PixelGrid
-import models.image.RGBImage
+import models.image.Image
 import models.pixels.RGBPixel
 
 import java.awt.image.BufferedImage
 
 class BufferedImageToRGBImageConverter
-    extends Converter[BufferedImage, RGBImage] {
-  override def convert(input: BufferedImage): RGBImage = {
+    extends Converter[BufferedImage, Image[RGBPixel]] {
+  override def convert(input: BufferedImage): Image[RGBPixel] = {
     val pixelGrid = for (y <- 0 until input.getHeight)
       yield
         for (x <- 0 until input.getWidth) yield {
@@ -19,6 +19,6 @@ class BufferedImageToRGBImageConverter
           val red = (rgb & 0xff0000) >> 16
           RGBPixel(red, green, blue)
         }
-    new RGBImage(new PixelGrid(pixelGrid))
+    new Image(new PixelGrid(pixelGrid))
   }
 }

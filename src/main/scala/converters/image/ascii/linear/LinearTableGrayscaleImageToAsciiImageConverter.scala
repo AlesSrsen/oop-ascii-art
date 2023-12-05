@@ -1,14 +1,14 @@
 package converters.image.ascii.linear
 
 import converters.image.ImageToImageConverter
-import models.image.{AsciiImage, GrayscaleImage}
+import models.image.Image
 import models.pixels.{AsciiPixel, GrayscalePixel}
 
 trait LinearTableGrayscaleImageToAsciiImageConverter
-    extends ImageToImageConverter[GrayscaleImage, AsciiImage] {
+    extends ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] {
   val table: Seq[Char]
 
-  override def convert(input: GrayscaleImage): AsciiImage = {
+  override def convert(input: Image[GrayscalePixel]): Image[AsciiPixel] = {
     require(table.nonEmpty, "Table must not be empty")
 
     val asciiPixels = input.pixels.mapRowsGrid(_.map(pixel => {
@@ -16,6 +16,6 @@ trait LinearTableGrayscaleImageToAsciiImageConverter
       val index = pixel.gray.toFloat / bucketSize
       AsciiPixel(table(index.toInt))
     }))
-    new AsciiImage(asciiPixels)
+    new Image(asciiPixels)
   }
 }

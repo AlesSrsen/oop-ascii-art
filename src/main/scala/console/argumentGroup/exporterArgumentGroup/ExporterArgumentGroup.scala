@@ -3,7 +3,8 @@ package console.argumentGroup.exporterArgumentGroup
 import console.argument.exporterArgument.{AsciiImageExporterArgument, FileAsciiImageExporterArgument, StdOutAsciiImageExporterArgument}
 import console.argumentGroup.ArgumentGroup
 import exporters.image.ImageExporter
-import models.image.AsciiImage
+import models.image.Image
+import models.pixels.AsciiPixel
 
 class ExporterArgumentGroup extends ArgumentGroup {
 
@@ -12,8 +13,8 @@ class ExporterArgumentGroup extends ArgumentGroup {
       new FileAsciiImageExporterArgument,
       new StdOutAsciiImageExporterArgument)
 
-  def getAsciiImageExporter(
-    args: Seq[String]): (Option[ImageExporter[AsciiImage]], Seq[String]) = {
+  def getAsciiImageExporter(args: Seq[String])
+    : (Option[ImageExporter[Image[AsciiPixel]]], Seq[String]) = {
     for (arg <- arguments()) {
       val (loader, newArgs) = arg.getAsciiImageExporter(args)
       if (loader.isDefined) return (Some(loader.get), newArgs)

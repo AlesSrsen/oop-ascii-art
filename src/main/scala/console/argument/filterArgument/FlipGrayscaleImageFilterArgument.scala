@@ -1,8 +1,9 @@
 package console.argument.filterArgument
 
 import filters.image.ImageFilter
-import filters.image.gray.flip.{XFlipGrayscaleImageFilter, YFlipGrayscaleImageFilter}
-import models.image.GrayscaleImage
+import filters.image.generic.flip.{XFlipImageFilter, YFlipImageFilter}
+import models.image.Image
+import models.pixels.GrayscalePixel
 
 class FlipGrayscaleImageFilterArgument extends GrayscaleImageFilterArgument {
   override def specification(): Seq[String] =
@@ -11,7 +12,7 @@ class FlipGrayscaleImageFilterArgument extends GrayscaleImageFilterArgument {
   override def argumentName: String = "--flip"
 
   override def getGrayscaleImageFilter(
-    args: Args): (Option[ImageFilter[GrayscaleImage]], Args) =
+    args: Args): (Option[ImageFilter[Image[GrayscalePixel]]], Args) =
     getResult(
       args,
       (otherArgs: Args) => {
@@ -20,9 +21,9 @@ class FlipGrayscaleImageFilterArgument extends GrayscaleImageFilterArgument {
         if (otherArgs.head != "x" && otherArgs.head != "y")
           throw new IllegalArgumentException("Invalid flip direction")
         if (otherArgs.head == "x")
-          return (Some(new XFlipGrayscaleImageFilter()), otherArgs.drop(1))
+          return (Some(new XFlipImageFilter()), otherArgs.drop(1))
         else
-          return (Some(new YFlipGrayscaleImageFilter()), otherArgs.drop(1))
+          return (Some(new YFlipImageFilter()), otherArgs.drop(1))
       }
     )
 }

@@ -4,7 +4,8 @@ import converters.image.rgb.BufferedImageToRGBImageConverter
 import loaders.FileLoader
 import loaders.external.file.BufferedImageFileLoader
 import loaders.image.RGBImageLoader
-import models.image.RGBImage
+import models.image.Image
+import models.pixels.RGBPixel
 
 import java.io.File
 import java.nio.file.Paths
@@ -12,7 +13,7 @@ import java.nio.file.Paths
 class RGBImageFileLoader(
   image: File,
   javaImageToRGBImageConverter: BufferedImageToRGBImageConverter)
-    extends FileLoader[RGBImage]
+    extends FileLoader[Image[RGBPixel]]
     with RGBImageLoader {
   require(image.isFile, "Unable to load file: " + image.getAbsolutePath)
   require(
@@ -27,7 +28,7 @@ class RGBImageFileLoader(
   )
   require(image.canRead, "Unable to read file: " + image.getAbsolutePath)
 
-  override def load(): RGBImage =
+  override def load(): Image[RGBPixel] =
     javaImageToRGBImageConverter.convert(
       new BufferedImageFileLoader(image).load()
     )

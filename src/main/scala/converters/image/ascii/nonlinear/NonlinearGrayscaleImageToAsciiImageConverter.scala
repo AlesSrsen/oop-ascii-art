@@ -1,14 +1,14 @@
 package converters.image.ascii.nonlinear
 
 import converters.image.ImageToImageConverter
-import models.image.{AsciiImage, GrayscaleImage}
-import models.pixels.AsciiPixel
+import models.image.Image
+import models.pixels.{AsciiPixel, GrayscalePixel}
 
 import scala.annotation.tailrec
 import scala.collection.SortedMap
 
 trait NonlinearGrayscaleImageToAsciiImageConverter
-    extends ImageToImageConverter[GrayscaleImage, AsciiImage] {
+    extends ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] {
   // Mapping of values is described by this map
   // Key is the smallest value from which the corresponding character is used
   // Character is used for values greater than or equal to the key
@@ -17,7 +17,7 @@ trait NonlinearGrayscaleImageToAsciiImageConverter
 
   require(characterMapping.nonEmpty, "Character mapping must not be empty")
 
-  def convert(grayscaleImage: GrayscaleImage): AsciiImage = {
+  def convert(grayscaleImage: Image[GrayscalePixel]): Image[AsciiPixel] = {
     def sortedKeyValues = characterMapping.toSeq
 
     val asciiPixels =
@@ -28,7 +28,7 @@ trait NonlinearGrayscaleImageToAsciiImageConverter
         AsciiPixel(character)
       }))
 
-    new AsciiImage(asciiPixels)
+    new Image(asciiPixels)
   }
 
   private def findLargestSmallerEqualKeyForValue(
