@@ -6,6 +6,12 @@ import filters.image.ImageFilter
 import filters.pixelGrid.BrightnessPixelGridFilter
 import operators.PixelOperator
 
+/**
+ * BrightnessImageFilter changes the brightness of an Image.
+ * @param amount the amount of brightness to be added. Range depends on the type of Pixel.
+ * @param pixelOperator the PixelOperator to be used.
+ * @tparam T the type of Pixel.
+ */
 class BrightnessImageFilter[T <: Pixel](
   amount: Int,
   pixelOperator: PixelOperator[T])
