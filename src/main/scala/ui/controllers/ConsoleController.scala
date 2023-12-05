@@ -1,6 +1,6 @@
 package ui.controllers
 
-import console.ArgumentLoader
+import console.ArgumentParser
 import console.exceptions.{InvalidArgumentException, InvalidArgumentOptionException, MissingArgumentException, MissingArgumentOptionException}
 import facades.AsciiImageFromImage
 import ui.views.View
@@ -8,13 +8,13 @@ import ui.views.View
 class ConsoleController(args: Seq[String], view: View) extends Controller {
   override def run(): Unit =
     try {
-      val argumentLoader = new ArgumentLoader(args)
+      val argumentParser = new ArgumentParser(args)
       new AsciiImageFromImage()
         .createAsciiImageFromImage(
-          argumentLoader.loader,
-          argumentLoader.filters,
-          argumentLoader.converter,
-          argumentLoader.exporters)
+          argumentParser.loader,
+          argumentParser.filters,
+          argumentParser.converter,
+          argumentParser.exporters)
     } catch {
       case e: MissingArgumentOptionException =>
         view.error("Argument option missing: " + e.getMessage)

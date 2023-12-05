@@ -13,7 +13,7 @@ import loaders.image.RGBImageLoader
 import models.image.Image
 import models.pixels.{AsciiPixel, GrayscalePixel}
 
-class ArgumentLoader(args: Seq[String]) {
+class ArgumentParser(args: Seq[String]) {
   private val loaderArgumentGroup = new RGBImageLoaderArgumentGroup
   private val filterArgumentGroup = new GrayscaleImageFilterArgumentGroup
   private val converterArgumentGroup =
