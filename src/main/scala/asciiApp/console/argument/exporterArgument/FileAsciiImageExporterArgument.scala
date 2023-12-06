@@ -1,9 +1,7 @@
 package asciiApp.console.argument.exporterArgument
 
 import asciiApp.console.exceptions.MissingArgumentOptionException
-import asciiApp.models.image.Image
-import asciiApp.models.pixels.AsciiPixel
-import exporters.image.{FileAsciiImageExporter, ImageExporter}
+import exporters.image.{FileAsciiImageExporter, StreamAsciiImageExporter}
 
 import java.io.File
 
@@ -14,7 +12,7 @@ class FileAsciiImageExporterArgument extends AsciiImageExporterArgument {
   override def aliases: Seq[String] = Seq("-o")
 
   override protected def argOptionsReducer(
-    argumentOptions: Seq[String]): (ImageExporter[Image[AsciiPixel]], Args) = {
+    argumentOptions: Seq[String]): (StreamAsciiImageExporter, Args) = {
     if (argumentOptions.length < 1)
       throw new MissingArgumentOptionException(
         "No path to output result supplied to: " + argumentName)

@@ -4,12 +4,15 @@ import asciiApp.console.argumentGroup.converterArgumentGroup.GrayscaleImageToAsc
 import asciiApp.console.argumentGroup.exporterArgumentGroup.AsciiImageExporterArgumentGroup
 import asciiApp.console.argumentGroup.filterArgumentGroup.GrayscaleImageFilterArgumentGroup
 import asciiApp.console.argumentGroup.loaderArgumentGroup.RGBImageLoaderArgumentGroup
-import asciiApp.console.exceptions.{InvalidArgumentException, MissingArgumentException}
+import asciiApp.console.exceptions.{
+  InvalidArgumentException,
+  MissingArgumentException
+}
 import asciiApp.models.image.Image
 import asciiApp.models.pixels.{AsciiPixel, GrayscalePixel}
 import converters.image.ImageToImageConverter
 import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiAsciiImageConverter
-import exporters.image.{ImageExporter, StdOutAsciiImageExporter}
+import exporters.image.{StdOutAsciiImageExporter, StreamAsciiImageExporter}
 import filters.image.ImageFilter
 import loaders.image.RGBImageLoader
 
@@ -30,13 +33,14 @@ class ArgumentParser(args: Seq[String]) {
   private var _converter =
     Option
       .empty[ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]]
-  private var _exporters = Seq.empty[ImageExporter[Image[AsciiPixel]]]
+  private var _exporters = Seq.empty[StreamAsciiImageExporter]
 
   print(
     argumentGroup
       .map(arg =>
         arg.groupSpecification().map(_.mkString(" | ")).mkString("\n"))
       .mkString("\n---------------------\n") + "\n\n")
+
   private var argsToParse = args
 
   def loader: RGBImageLoader = _loader.get
@@ -47,7 +51,7 @@ class ArgumentParser(args: Seq[String]) {
     : ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] =
     _converter.get
 
-  def exporters: Iterable[ImageExporter[Image[AsciiPixel]]] = _exporters
+  def exporters: Iterable[StreamAsciiImageExporter] = _exporters
 
   while (argsToParse.nonEmpty) {
     var parsedInThisRound = false

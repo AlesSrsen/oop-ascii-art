@@ -1,6 +1,6 @@
 package asciiApp.console.argument
 
-trait Argument[+T] {
+trait Argument[T] {
   type Args = Seq[String]
 
   def argumentName: String

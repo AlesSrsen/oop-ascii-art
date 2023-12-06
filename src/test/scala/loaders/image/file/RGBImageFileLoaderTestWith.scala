@@ -19,7 +19,7 @@ class RGBImageFileLoaderTestWith
   test("Load Image[RGBPixel] from file") {
     val image =
       new RGBImageFileLoader(
-        getImage("testing_grid_image.png"),
+        getImageFromResources("testing_grid_image.png"),
         bufferedImageToRGBImageConverter).load()
 
     image.width should be(5)
@@ -40,8 +40,16 @@ class RGBImageFileLoaderTestWith
   test("Try to load not existing file") {
     assertThrows[IllegalArgumentException] {
       new RGBImageFileLoader(
-        getRandomNonExistingFile,
+        getRandomNonExistingTempFile(),
         bufferedImageToRGBImageConverter).load()
     }
+  }
+
+  test("Try to load file with wrong extension") {
+    val tempFile = getRandomExistingTempFile(".image")
+    assertThrows[IllegalArgumentException] {
+      new RGBImageFileLoader(tempFile, bufferedImageToRGBImageConverter).load()
+    }
+    deleteFile(tempFile)
   }
 }

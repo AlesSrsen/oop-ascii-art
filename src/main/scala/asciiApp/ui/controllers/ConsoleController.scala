@@ -15,6 +15,7 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
           argumentParser.filters,
           argumentParser.converter,
           argumentParser.exporters)
+      argumentParser.exporters.foreach(exporter => exporter.close())
     } catch {
       case e: MissingArgumentOptionException =>
         view.error("Argument option missing: " + e.getMessage)

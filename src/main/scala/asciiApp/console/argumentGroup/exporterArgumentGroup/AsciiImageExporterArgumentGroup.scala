@@ -4,10 +4,10 @@ import asciiApp.console.argument.exporterArgument.{AsciiImageExporterArgument, F
 import asciiApp.console.argumentGroup.ArgumentGroup
 import asciiApp.models.image.Image
 import asciiApp.models.pixels.AsciiPixel
-import exporters.image.ImageExporter
+import exporters.image.{ImageExporter, StreamAsciiImageExporter}
 
 class AsciiImageExporterArgumentGroup
-    extends ArgumentGroup[ImageExporter[Image[AsciiPixel]]] {
+    extends ArgumentGroup[StreamAsciiImageExporter] {
 
   override protected def arguments(): Seq[AsciiImageExporterArgument] =
     Seq(
