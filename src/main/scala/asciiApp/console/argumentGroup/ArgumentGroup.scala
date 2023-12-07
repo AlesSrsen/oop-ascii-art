@@ -9,14 +9,6 @@ abstract class ArgumentGroup[T] {
   def groupSpecification(): Seq[Seq[String]] =
     for (arg <- arguments()) yield arg.specification()
 
-  private def tryParseTop(args: Seq[String]): (Option[T], Seq[String]) = {
-    for (arg <- arguments()) {
-      val (result, newArgs) = arg.getResult(args)
-      if (result.isDefined) return (result, newArgs)
-    }
-    (None, args)
-  }
-
   def parse(args: Seq[String]): Seq[String] = {
     if (_parsed)
       throw new IllegalStateException("This group has already been parsed")
@@ -37,6 +29,14 @@ abstract class ArgumentGroup[T] {
     }
 
     unparsedArguments
+  }
+
+  private def tryParseTop(args: Seq[String]): (Option[T], Seq[String]) = {
+    for (arg <- arguments()) {
+      val (result, newArgs) = arg.getResult(args)
+      if (result.isDefined) return (result, newArgs)
+    }
+    (None, args)
   }
 
   def getParsingResult: Seq[T] = {

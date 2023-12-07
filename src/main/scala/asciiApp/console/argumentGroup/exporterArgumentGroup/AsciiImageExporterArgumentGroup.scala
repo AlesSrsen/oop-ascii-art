@@ -2,9 +2,7 @@ package asciiApp.console.argumentGroup.exporterArgumentGroup
 
 import asciiApp.console.argument.exporterArgument.{AsciiImageExporterArgument, FileAsciiImageExporterArgument, StdOutAsciiImageExporterArgument}
 import asciiApp.console.argumentGroup.ArgumentGroup
-import asciiApp.models.image.Image
-import asciiApp.models.pixels.AsciiPixel
-import exporters.image.{ImageExporter, StreamAsciiImageExporter}
+import exporters.image.StreamAsciiImageExporter
 
 class AsciiImageExporterArgumentGroup
     extends ArgumentGroup[StreamAsciiImageExporter] {
