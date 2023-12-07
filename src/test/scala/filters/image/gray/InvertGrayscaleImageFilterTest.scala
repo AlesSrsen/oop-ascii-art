@@ -10,12 +10,20 @@ class InvertGrayscaleImageFilterTest extends FunSuite with TestWithImages {
       Seq(
         Seq(new GrayscalePixel(0), new GrayscalePixel(255)),
         Seq(new GrayscalePixel(255), new GrayscalePixel(0))
-      ))
+      )
+    )
+
     val invertedImage = new InvertGrayscaleImageFilter().applyFilter(image)
-    assert(invertedImage.pixels(0, 0).gray == 255)
-    assert(invertedImage.pixels(0, 1).gray == 0)
-    assert(invertedImage.pixels(1, 0).gray == 0)
-    assert(invertedImage.pixels(1, 1).gray == 255)
+
+    compareImagePixels(
+      invertedImage,
+      createImage(
+        Seq(
+          Seq(new GrayscalePixel(255), new GrayscalePixel(0)),
+          Seq(new GrayscalePixel(0), new GrayscalePixel(255))
+        )
+      )
+    )
   }
 
   test("Check inversion on a rectangle image with middle values") {
@@ -33,12 +41,25 @@ class InvertGrayscaleImageFilterTest extends FunSuite with TestWithImages {
         )
       )
     )
+
     val invertedImage = new InvertGrayscaleImageFilter().applyFilter(image)
-    assert(invertedImage.pixels(0, 0).gray == 255)
-    assert(invertedImage.pixels(0, 1).gray == 0)
-    assert(invertedImage.pixels(0, 2).gray == 155)
-    assert(invertedImage.pixels(1, 0).gray == 0)
-    assert(invertedImage.pixels(1, 1).gray == 255)
-    assert(invertedImage.pixels(1, 2).gray == 155)
+
+    compareImagePixels(
+      invertedImage,
+      createImage(
+        Seq(
+          Seq(
+            new GrayscalePixel(255),
+            new GrayscalePixel(0),
+            new GrayscalePixel(155)
+          ),
+          Seq(
+            new GrayscalePixel(0),
+            new GrayscalePixel(255),
+            new GrayscalePixel(155)
+          )
+        )
+      )
+    )
   }
 }

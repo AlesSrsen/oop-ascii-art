@@ -17,7 +17,7 @@ class BufferedImageToRGBImageConverter
           val blue = rgb & 0xff
           val green = (rgb & 0xff00) >> 8
           val red = (rgb & 0xff0000) >> 16
-          RGBPixel(red, green, blue)
+          RGBPixel.corrected(red, green, blue)
         }
     new Image(new PixelGrid(pixelGrid))
   }

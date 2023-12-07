@@ -17,7 +17,7 @@ class GrayscalePixelOperator extends PixelOperator[GrayscalePixel] {
    * @return GrayscalePixel that represents the average
    */
   override def average(a: GrayscalePixel, b: GrayscalePixel): GrayscalePixel =
-    new GrayscalePixel((a.gray + b.gray) / 2)
+    GrayscalePixel.corrected((a.gray + b.gray) / 2)
 
   /**
    * Returns the sum of two GrayscalePixels
@@ -26,7 +26,7 @@ class GrayscalePixelOperator extends PixelOperator[GrayscalePixel] {
    * @return GrayscalePixel that represents the sum
    */
   override def add(a: GrayscalePixel, b: GrayscalePixel): GrayscalePixel =
-    new GrayscalePixel(a.gray + b.gray)
+    GrayscalePixel.corrected(a.gray + b.gray)
 
   /**
    * Returns the difference between two GrayscalePixels
@@ -35,7 +35,7 @@ class GrayscalePixelOperator extends PixelOperator[GrayscalePixel] {
    * @return GrayscalePixel that represents the difference
    */
   override def subtract(a: GrayscalePixel, b: GrayscalePixel): GrayscalePixel =
-    new GrayscalePixel(a.gray - b.gray)
+    GrayscalePixel.corrected(a.gray - b.gray)
 
   /**
    * Returns the inverse of a GrayscalePixel
@@ -43,7 +43,7 @@ class GrayscalePixelOperator extends PixelOperator[GrayscalePixel] {
    * @return GrayscalePixel that represents the inverse
    */
   override def inverse(a: GrayscalePixel): GrayscalePixel =
-    new GrayscalePixel(max().gray - a.gray)
+    GrayscalePixel.corrected(max().gray - a.gray)
 
   /**
    * Returns the maximum value of a GrayscalePixel
@@ -58,5 +58,5 @@ class GrayscalePixelOperator extends PixelOperator[GrayscalePixel] {
    * @return GrayscalePixel that represents the sum
    */
   override def addScalar(a: GrayscalePixel, b: Int): GrayscalePixel =
-    new GrayscalePixel(a.gray + b)
+    GrayscalePixel.corrected(a.gray + b)
 }

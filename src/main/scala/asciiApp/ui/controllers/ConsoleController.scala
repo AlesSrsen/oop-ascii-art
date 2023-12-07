@@ -35,7 +35,7 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
 
   override def run(): Unit =
     try {
-      parse()
+      parseArguments()
 
       val loader = getLoader()
       val filters = getFilters()
@@ -59,7 +59,7 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
         view.error("An unexpected error occurred: " + e.getMessage)
     }
 
-  private def parse(): Seq[String] = {
+  private def parseArguments(): Seq[String] = {
     val restOfArguments = argumentGroups.foldLeft(args)(
       (args, argumentGroup) => argumentGroup.parse(args)
     )

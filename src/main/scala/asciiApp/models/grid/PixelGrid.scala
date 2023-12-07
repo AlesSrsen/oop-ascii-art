@@ -15,7 +15,9 @@ class PixelGrid[T <: Pixel](private val pixels: Seq[Seq[T]]) {
   def height: Int = pixels.size
   def width: Int = pixels.head.size
 
-  def reverse(): Seq[Seq[T]] = pixels.reverse
+  def getPixelSeq: Seq[Seq[T]] = pixels
+
+  def reverse(): Seq[Seq[T]] = getPixelSeq.reverse
 
   def reversedGrid(): PixelGrid[T] = new PixelGrid(pixels.reverse)
 

@@ -13,8 +13,15 @@ class BrightnessGrayscaleImageFilterTest extends FunSuite with TestWithImages {
     )
     val brightenedImage =
       new BrightnessGrayscaleImageFilter(10).applyFilter(image)
-    assert(brightenedImage.pixels(0, 0).gray == 10)
-    assert(brightenedImage.pixels(0, 1).gray == 255)
+
+    compareImagePixels(
+      brightenedImage,
+      createImage(
+        Seq(
+          Seq(new GrayscalePixel(10), new GrayscalePixel(255)),
+        )
+      )
+    )
   }
 
   test("Check subtract brightness on square with edge values") {
@@ -25,8 +32,15 @@ class BrightnessGrayscaleImageFilterTest extends FunSuite with TestWithImages {
     )
     val brightenedImage =
       new BrightnessGrayscaleImageFilter(-10).applyFilter(image)
-    assert(brightenedImage.pixels(0, 0).gray == 0)
-    assert(brightenedImage.pixels(0, 1).gray == 245)
+
+    compareImagePixels(
+      brightenedImage,
+      createImage(
+        Seq(
+          Seq(new GrayscalePixel(0), new GrayscalePixel(245)),
+        )
+      )
+    )
   }
 
   test("Check add brightness on a rectangle image with middle values") {
@@ -46,12 +60,24 @@ class BrightnessGrayscaleImageFilterTest extends FunSuite with TestWithImages {
     )
     val brightenedImage =
       new BrightnessGrayscaleImageFilter(10).applyFilter(image)
-    assert(brightenedImage.pixels(0, 0).gray == 10)
-    assert(brightenedImage.pixels(0, 1).gray == 255)
-    assert(brightenedImage.pixels(0, 2).gray == 110)
-    assert(brightenedImage.pixels(1, 0).gray == 255)
-    assert(brightenedImage.pixels(1, 1).gray == 10)
-    assert(brightenedImage.pixels(1, 2).gray == 110)
+
+    compareImagePixels(
+      brightenedImage,
+      createImage(
+        Seq(
+          Seq(
+            new GrayscalePixel(10),
+            new GrayscalePixel(255),
+            new GrayscalePixel(110)
+          ),
+          Seq(
+            new GrayscalePixel(255),
+            new GrayscalePixel(10),
+            new GrayscalePixel(110)
+          )
+        )
+      )
+    )
   }
 
   test("Check subtract brightness on a rectangle image with middle values") {
@@ -71,12 +97,24 @@ class BrightnessGrayscaleImageFilterTest extends FunSuite with TestWithImages {
     )
     val brightenedImage =
       new BrightnessGrayscaleImageFilter(-10).applyFilter(image)
-    assert(brightenedImage.pixels(0, 0).gray == 0)
-    assert(brightenedImage.pixels(0, 1).gray == 245)
-    assert(brightenedImage.pixels(0, 2).gray == 90)
-    assert(brightenedImage.pixels(1, 0).gray == 245)
-    assert(brightenedImage.pixels(1, 1).gray == 0)
-    assert(brightenedImage.pixels(1, 2).gray == 90)
+
+    compareImagePixels(
+      brightenedImage,
+      createImage(
+        Seq(
+          Seq(
+            new GrayscalePixel(0),
+            new GrayscalePixel(245),
+            new GrayscalePixel(90)
+          ),
+          Seq(
+            new GrayscalePixel(245),
+            new GrayscalePixel(0),
+            new GrayscalePixel(90)
+          )
+        )
+      )
+    )
   }
 
   test("Add invalid brightness amount") {
@@ -103,9 +141,18 @@ class BrightnessGrayscaleImageFilterTest extends FunSuite with TestWithImages {
     )
     val brightenedImage =
       new BrightnessGrayscaleImageFilter(255).applyFilter(image)
-    assert(brightenedImage.pixels(0, 0).gray == 255)
-    assert(brightenedImage.pixels(0, 1).gray == 255)
-    assert(brightenedImage.pixels(0, 2).gray == 255)
+    compareImagePixels(
+      brightenedImage,
+      createImage(
+        Seq(
+          Seq(
+            new GrayscalePixel(255),
+            new GrayscalePixel(255),
+            new GrayscalePixel(255)
+          )
+        )
+      )
+    )
   }
 
   test("Subtract edge brightness amount") {
@@ -120,8 +167,18 @@ class BrightnessGrayscaleImageFilterTest extends FunSuite with TestWithImages {
     )
     val brightenedImage =
       new BrightnessGrayscaleImageFilter(-255).applyFilter(image)
-    assert(brightenedImage.pixels(0, 0).gray == 0)
-    assert(brightenedImage.pixels(0, 1).gray == 0)
-    assert(brightenedImage.pixels(0, 2).gray == 0)
+
+    compareImagePixels(
+      brightenedImage,
+      createImage(
+        Seq(
+          Seq(
+            new GrayscalePixel(0),
+            new GrayscalePixel(0),
+            new GrayscalePixel(0)
+          )
+        )
+      )
+    )
   }
 }
