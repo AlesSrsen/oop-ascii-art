@@ -21,17 +21,17 @@ class PixelGrid[T <: Pixel](private val pixels: Seq[Seq[T]]) {
 
   def reversedGrid(): PixelGrid[T] = new PixelGrid(pixels.reverse)
 
-  def mapPixelsGrid(f: T => T): PixelGrid[T] =
+  def mapPixelsGrid[O <: Pixel](f: T => O): PixelGrid[O] =
     new PixelGrid(mapPixels(f))
+
+  def mapRowsGrid[O <: Pixel](f: Seq[T] => Seq[O]): PixelGrid[O] =
+    new PixelGrid(mapRows(f))
 
   def mapPixels[O](f: T => O): Seq[Seq[O]] =
     mapRows(_.map(f))
 
   def mapRows[O](f: Seq[T] => Seq[O]): Seq[Seq[O]] =
     pixels.map(f)
-
-  def mapRowsGrid[O <: Pixel](f: Seq[T] => Seq[O]): PixelGrid[O] =
-    new PixelGrid(mapRows(f))
 
   def updated(row: Int, col: Int, pixel: T): PixelGrid[T] = {
     val newPixels = pixels.updated(row, pixels(row).updated(col, pixel))
