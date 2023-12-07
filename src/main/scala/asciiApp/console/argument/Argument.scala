@@ -13,7 +13,7 @@ trait Argument[T] {
   def aliases: Seq[String] = Seq.empty
 
   def getResult(args: Args): (Option[T], Args) =
-    if (args.nonEmpty && argumentName.contains(args.head)) {
+    if (args.nonEmpty && argumentAliases.contains(args.head)) {
       val (instance, restOfArgs) = argOptionsReducer(args.drop(1))
       (Some(instance), restOfArgs)
     } else
