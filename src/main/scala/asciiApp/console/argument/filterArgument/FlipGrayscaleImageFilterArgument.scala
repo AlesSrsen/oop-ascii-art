@@ -16,12 +16,12 @@ class FlipGrayscaleImageFilterArgument extends GrayscaleImageFilterArgument {
     : (ImageFilter[Image[GrayscalePixel]], Args) = {
     if (argumentOptions.length < 1)
       throw new MissingArgumentOptionException("No flip direction specified")
-    if (argumentOptions.head != "x" && argumentOptions.head != "y")
-      throw new InvalidArgumentOptionException(
-        "Invalid flip direction: " + argumentOptions.head)
-    if (argumentOptions.head == "x")
-      (new XFlipImageFilter(), argumentOptions.drop(1))
-    else
-      (new YFlipImageFilter(), argumentOptions.drop(1))
+    argumentOptions.head match {
+      case "x" => (new XFlipImageFilter(), argumentOptions.drop(1))
+      case "y" => (new YFlipImageFilter(), argumentOptions.drop(1))
+      case _ =>
+        throw new InvalidArgumentOptionException(
+          "Invalid flip direction: " + argumentOptions.head)
+    }
   }
 }
