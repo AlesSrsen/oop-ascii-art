@@ -1,9 +1,12 @@
 package converters.image.ascii.nonlinear
 import scala.collection.SortedMap
 
+/**
+ * Made up mapping where middle levels of brightness are covered by ';'
+ */
 class DefaultNonlinearGrayscaleImageToAsciiImageConverter
     extends NonlinearGrayscaleImageToAsciiImageConverter {
-  override def characterMapping: SortedMap[Int, Char] =
+  override val characterMapping: SortedMap[Int, Char] =
     SortedMap(
       0 -> '@',
       20 -> '$',

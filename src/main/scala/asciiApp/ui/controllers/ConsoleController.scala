@@ -57,6 +57,7 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
         view.error("Invalid argument: " + e.getMessage)
       case e: RuntimeException =>
         view.error("An unexpected error occurred: " + e.getMessage)
+        throw e
     }
 
   private def parseArguments(): Seq[String] = {

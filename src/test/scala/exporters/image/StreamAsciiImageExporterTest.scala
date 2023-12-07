@@ -29,7 +29,7 @@ class StreamAsciiImageExporterTest
     )
     assert(
       testStream.toString() == "a" + System.lineSeparator() + "b" + System
-        .lineSeparator() + "c");
+        .lineSeparator() + "c")
   }
 
   test("Export image with one pixel to stream") {
@@ -41,7 +41,7 @@ class StreamAsciiImageExporterTest
         )
       )
     )
-    assert(testStream.toString() == "*");
+    assert(testStream.toString() == "*")
   }
 
   test("Export multiple rows to stream") {
@@ -54,6 +54,6 @@ class StreamAsciiImageExporterTest
         )
       )
     )
-    assert(testStream.toString() == "abc" + System.lineSeparator() + "def");
+    assert(testStream.toString() == "abc" + System.lineSeparator() + "def")
   }
 }

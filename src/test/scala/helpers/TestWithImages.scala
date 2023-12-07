@@ -9,6 +9,8 @@ trait TestWithImages extends FunSuite {
   def createImage[T <: Pixel](pixels: Seq[Seq[T]]) =
     new Image[T](new PixelGrid(pixels))
 
-  def compareImagePixels[T <: Pixel](original: Image[T], expected: Image[T]) =
+  def compareImagePixels[T <: Pixel](
+    original: Image[T],
+    expected: Image[T]): Unit =
     assert(original.pixels.getPixelSeq == expected.pixels.getPixelSeq)
 }

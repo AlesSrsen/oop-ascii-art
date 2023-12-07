@@ -32,7 +32,7 @@ class FileAsciiImageExporterTest
     assertFileContent(
       testFile,
       "a" + System.lineSeparator() + "b" + System.lineSeparator() + "c"
-    );
+    )
   }
 
   test("Export image with one pixel to file") {
@@ -45,7 +45,7 @@ class FileAsciiImageExporterTest
       )
     )
     exporter.close()
-    assertFileContent(testFile, "*");
+    assertFileContent(testFile, "*")
   }
 
   test("Export multiple rows to file") {
@@ -59,7 +59,7 @@ class FileAsciiImageExporterTest
       )
     )
     exporter.close()
-    assertFileContent(testFile, "abc" + System.lineSeparator() + "def");
+    assertFileContent(testFile, "abc" + System.lineSeparator() + "def")
   }
 
   test("Export to already closed stream") {

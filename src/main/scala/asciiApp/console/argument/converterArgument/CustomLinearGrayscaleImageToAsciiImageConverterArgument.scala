@@ -18,7 +18,7 @@ class CustomLinearGrayscaleImageToAsciiImageConverterArgument
     if (argumentOptions.isEmpty || argumentOptions.head.isEmpty)
       throw new MissingArgumentOptionException(
         "No table provided for: " + argumentName)
-    val table = argumentOptions.head.toSeq
+    val table = argumentOptions.head.toIndexedSeq
     (
       new CustomTableGrayscaleImageToAsciiImageConverter(table),
       argumentOptions.drop(1)

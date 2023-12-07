@@ -26,8 +26,8 @@ class RGBImageRandomLoader(random: Random)
     val height = random.between(1, 1000)
     val pixels =
       mutable.ArraySeq
-        .fill(height)(mutable.ArraySeq.fill(width)(randomPixel()).toSeq)
-        .toSeq
+        .fill(height)(mutable.ArraySeq.fill(width)(randomPixel()).toIndexedSeq)
+        .toIndexedSeq
     new Image(new PixelGrid(pixels))
   }
 
