@@ -33,19 +33,18 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
     AsciiImageExporterArgumentGroupInstance
   )
 
-  override def run(): Unit =
+  override def run(): Unit = {
+    var exporters = Seq.empty[StreamAsciiImageExporter]
     try {
       parseArguments()
-
       val loader = getLoader()
       val filters = getFilters()
       val converter = getConverter()
-      val exporters = getExporters()
+      exporters = getExporters()
 
       new AsciiImageFromImage()
         .createAsciiImageFromImage(loader, filters, converter, exporters)
 
-      exporters.foreach(exporter => exporter.close())
     } catch {
       case e: MissingArgumentOptionException =>
         view.error("Argument option missing: " + e.getMessage)
@@ -56,9 +55,11 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
       case e: InvalidArgumentException =>
         view.error("Invalid argument: " + e.getMessage)
       case e: RuntimeException =>
-        view.error("An unexpected error occurred: " + e.getMessage)
         throw e
+    } finally {
+      exporters.foreach(exporter => exporter.close())
     }
+  }
 
   private def parseArguments(): Seq[String] = {
     val restOfArguments = argumentGroups.foldLeft(args)(
