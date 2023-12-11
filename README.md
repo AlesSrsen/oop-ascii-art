@@ -20,10 +20,13 @@ them. (https://courses.fit.cvut.cz/BI-OOP/projects/ASCII-art.html)
 ## Example run
 
 In the root directory outside the sbt shell:
+
 ```bash
 sbt "run --image ./src/main/resources/images/linear_gradient_rectangle.png --output-file ./out/image.txt --output-console --table-bourke-short --flip y"
 ```
+
 In sbt shell in the root directory:
+
 ```sbtshell
 run --image "./src/main/resources/images/linear_gradient_rectangle.png" --output-file "./out/image.txt" --output-console --table-bourke-short --flip y
 ```
@@ -70,3 +73,8 @@ By default `--output-console` is used.
 --output-file -o <path>
 --output-console
 ```
+
+## Test
+
+Run tests with `sbt test` (Or just `test` inside the sbt interactive shell).
+> Running tests in sbt shell has problems with cleanup of temporary files.
