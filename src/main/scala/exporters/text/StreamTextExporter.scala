@@ -7,7 +7,7 @@ import java.io.OutputStream
  * @param outputStream The output stream to export to
  */
 class StreamTextExporter(outputStream: OutputStream) extends TextExporter {
-  private var closed = false
+  protected var closed = false
 
   /**
    * Close the output stream
