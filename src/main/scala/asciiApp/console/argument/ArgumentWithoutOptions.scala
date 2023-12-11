@@ -9,7 +9,7 @@ trait ArgumentWithoutOptions[T] extends Argument[T] {
     argumentOptions: Seq[String]): (T, Args) = (createInstance(), argumentOptions)
 
   /**
-   * Argument without options should create an instance of the result type, since they do not do any addidional parsing
+   * Argument without options should create an instance of the result type, since they do not do any additional parsing
    * @return Instance of the result type
    */
   protected def createInstance(): T

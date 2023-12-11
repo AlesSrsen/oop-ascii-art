@@ -12,7 +12,7 @@ class CustomTableGrayscaleImageToAsciiImageConverterArgumentTest
   test("Parse argument") {
     val argument = new CustomTableGrayscaleImageToAsciiImageConverterArgument
     val args =
-      Seq("--table-custom", "abcd")
+      Seq("--table-custom", "xyz")
     val result = argument.getResult(args)
     assert(result._1.isDefined)
     assert(result._2.isEmpty)
@@ -34,7 +34,7 @@ class CustomTableGrayscaleImageToAsciiImageConverterArgumentTest
 
   test("Try to parse other arguments") {
     val argument = new CustomTableGrayscaleImageToAsciiImageConverterArgument
-    val args = Seq("--other-argument", "--table-custom", "abcd")
+    val args = Seq("--other-argument", "--table-custom", "xyz")
     val result = argument.getResult(args)
     assert(result._1.isEmpty)
     assert(result._2.size == 3)

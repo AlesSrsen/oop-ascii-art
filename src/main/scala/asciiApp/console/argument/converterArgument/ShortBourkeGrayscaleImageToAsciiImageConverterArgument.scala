@@ -12,7 +12,7 @@ class ShortBourkeGrayscaleImageToAsciiImageConverterArgument
       ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]] {
   override def argumentName: String = "--table-short-bourke"
 
-  override protected def createInstance
+  override protected def createInstance()
     : ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] =
     new ShortBourkeGrayscaleImageToAsciiImageConverter
 }

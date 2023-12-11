@@ -84,8 +84,7 @@ class CustomTableGrayscaleImageToAsciiImageConverterTest
     )
 
     assertThrows[IllegalArgumentException] {
-      val convertedImage =
-        new CustomTableGrayscaleImageToAsciiImageConverter(chars)
+      new CustomTableGrayscaleImageToAsciiImageConverter(chars)
           .convert(image)
     }
   }

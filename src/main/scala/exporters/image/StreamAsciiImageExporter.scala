@@ -4,11 +4,9 @@ import asciiApp.models.image.Image
 import asciiApp.models.pixels.AsciiPixel
 import exporters.text.StreamTextExporter
 
-import java.io.OutputStream
-
 /**
  * Exports an ascii image to a stream
- * @param outputStream The stream to export to
+ * @param streamTextExporter Exporter of text to stream, necessary to decide which stream to use
  */
 class StreamAsciiImageExporter(streamTextExporter: StreamTextExporter)
     extends ImageExporter[Image[AsciiPixel]] {

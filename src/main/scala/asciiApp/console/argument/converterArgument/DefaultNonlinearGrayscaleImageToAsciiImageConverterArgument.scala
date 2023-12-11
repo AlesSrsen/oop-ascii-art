@@ -13,7 +13,7 @@ class DefaultNonlinearGrayscaleImageToAsciiImageConverterArgument
 
   override def argumentName: String = "--nonlinear-default"
 
-  override protected def createInstance
+  override protected def createInstance()
     : ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] =
     new DefaultNonlinearGrayscaleImageToAsciiImageConverter
 }

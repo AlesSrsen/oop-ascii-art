@@ -13,7 +13,7 @@ class OutliersNonlinearGrayscaleImageToAsciiImageConverterArgument
 
   override def argumentName: String = "--nonlinear-outliers"
 
-  override protected def createInstance
+  override protected def createInstance()
     : ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] =
     new OutliersNonlinearGrayscaleImageToAsciiImageConverter
 }

@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream
 
 class ConsoleControllerTest extends FunSuite with TestWithFiles {
   test("Example run on test file") {
-    val result = getRandomNonExistingTempFile(".txt");
+    val result = getRandomNonExistingTempFile(".txt")
 
     val args: Seq[String] =
       Seq(
@@ -45,7 +45,7 @@ class ConsoleControllerTest extends FunSuite with TestWithFiles {
     val controller =
       new ConsoleController(args, new ConsoleView(outputStream))
 
-    controller.run();
+    controller.run()
 
     assert(
       outputStream.toString ==
@@ -75,7 +75,7 @@ class ConsoleControllerTest extends FunSuite with TestWithFiles {
     val controller =
       new ConsoleController(args, new ConsoleView(outputStream))
 
-    controller.run();
+    controller.run()
 
     assert(
       outputStream.toString ==

@@ -38,7 +38,7 @@ class RGBImageFileLoader(
       new BufferedImageFileLoader(image).load()
     )
 
-  protected def getFileExtension(file: File) =
+  protected def getFileExtension(file: File): String =
     Paths
       .get(file.getAbsolutePath)
       .getFileName

@@ -14,6 +14,5 @@ class StdOutTextExporter(stdOutOutputStream: OutputStream = System.out)
    */
   override def close(): Unit = {
     closed = true
-    return
   }
 }
