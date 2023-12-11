@@ -18,19 +18,14 @@ import java.nio.file.Paths
  */
 class RGBImageFileLoader(
   image: File,
-  javaImageToRGBImageConverter: BufferedImageToRGBImageConverter)
+  javaImageToRGBImageConverter: BufferedImageToRGBImageConverter =
+    new BufferedImageToRGBImageConverter)
     extends FileLoader[Image[RGBPixel]]
     with RGBImageLoader {
   require(image.isFile, "Unable to load file: " + image.getAbsolutePath)
   require(
-    Seq("png", "gif", "jpg").contains(
-      Paths.get(image.getAbsolutePath).getFileName.toString.split("\\.").last),
-    "Wrong file extension: " + Paths
-      .get(image.getAbsolutePath)
-      .getFileName
-      .toString
-      .split("\\.")
-      .last
+    Seq("png", "gif", "jpg").contains(getFileExtension(image)),
+    "Wrong file extension: " + getFileExtension(image)
   )
   require(image.canRead, "Unable to read file: " + image.getAbsolutePath)
 
@@ -42,4 +37,12 @@ class RGBImageFileLoader(
     javaImageToRGBImageConverter.convert(
       new BufferedImageFileLoader(image).load()
     )
+
+  protected def getFileExtension(file: File) =
+    Paths
+      .get(file.getAbsolutePath)
+      .getFileName
+      .toString
+      .split("\\.")
+      .last
 }

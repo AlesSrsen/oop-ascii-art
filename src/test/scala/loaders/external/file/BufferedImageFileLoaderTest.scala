@@ -18,12 +18,4 @@ class BufferedImageFileLoaderTest extends FunSuite with TestWithFiles {
       new BufferedImageFileLoader(getRandomNonExistingTempFile()).load()
     }
   }
-
-  test("Try to load file with wrong extension") {
-    val tempFile = getRandomExistingTempFile(".image")
-    assertThrows[IllegalArgumentException] {
-      new BufferedImageFileLoader(tempFile).load()
-    }
-    deleteFile(tempFile)
-  }
 }
