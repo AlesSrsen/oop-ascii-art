@@ -11,7 +11,7 @@ import asciiApp.models.image.Image
 import asciiApp.models.pixels.{AsciiPixel, GrayscalePixel}
 import asciiApp.ui.views.View
 import converters.image.ImageToImageConverter
-import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiAsciiImageConverter
+import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiImageConverter
 import exporters.image.StreamAsciiImageExporter
 import exporters.text.StdOutTextExporter
 import filters.image.ImageFilter
@@ -93,7 +93,7 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
     var converter =
       GrayscaleImageToAsciiImageConverterArgumentGroupInstance.getParsingResult
     if (converter.isEmpty)
-      converter :+= new BourkeGrayscaleImageToAsciiAsciiImageConverter
+      converter :+= new BourkeGrayscaleImageToAsciiImageConverter
 
     if (converter.size > 1)
       throw new InvalidArgumentException("Too many converters supplied")

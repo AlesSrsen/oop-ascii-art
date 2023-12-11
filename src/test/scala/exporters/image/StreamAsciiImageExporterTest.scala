@@ -60,4 +60,20 @@ class StreamAsciiImageExporterTest
     )
     assert(testStream.toString() == "abc" + System.lineSeparator() + "def")
   }
+
+  test("Close stream") {
+    val exporter =
+      new StreamAsciiImageExporter(new StreamTextExporter(testStream))
+    exporter.close()
+    assert(testStream.toString() == "")
+  }
+
+  test("Export to already closed stream") {
+    val exporter =
+      new StreamAsciiImageExporter(new StreamTextExporter(testStream))
+    exporter.close()
+    assertThrows[IllegalStateException] {
+      exporter.`export`(createImage(Seq(Seq(AsciiPixel('*')))))
+    }
+  }
 }

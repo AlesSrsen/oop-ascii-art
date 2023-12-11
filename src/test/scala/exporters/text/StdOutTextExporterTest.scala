@@ -4,13 +4,14 @@ import org.scalatest.{BeforeAndAfter, FunSuite}
 
 import java.io.ByteArrayOutputStream
 
-class StreamTextExporterTest extends FunSuite with BeforeAndAfter {
+// I was unable to test this with System.out
+class StdOutTextExporterTest extends FunSuite with BeforeAndAfter {
   var testStream: ByteArrayOutputStream = _
-  var exporter: StreamTextExporter = _
+  var exporter: StdOutTextExporter = _
 
   before {
     testStream = new ByteArrayOutputStream()
-    exporter = new StreamTextExporter(testStream)
+    exporter = new StdOutTextExporter(testStream)
   }
 
   test("Export text to stream") {

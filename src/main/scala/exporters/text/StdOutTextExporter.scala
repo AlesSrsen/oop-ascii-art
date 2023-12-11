@@ -1,6 +1,8 @@
 package exporters.text
 
+import java.io.OutputStream
+
 /**
  * Exports text to standard output.
  */
-class StdOutTextExporter extends StreamTextExporter(System.out) {}
+class StdOutTextExporter(stdOutOutputStream: OutputStream = System.out) extends StreamTextExporter(stdOutOutputStream) {}

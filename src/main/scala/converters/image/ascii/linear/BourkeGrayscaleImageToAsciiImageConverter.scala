@@ -1,12 +1,12 @@
 package converters.image.ascii.linear
 
 /**
- * Short Bourke grayscale image to ASCII converter.
+ * Bourke grayscale image to ASCII converter.
  * Mapping adapted from
  * @see [[https://paulbourke.net/dataformats/asciiart/]]
  */
-class ShortBourkeGrayscaleImageToAsciiAsciiImageConverter
+class BourkeGrayscaleImageToAsciiImageConverter
     extends LinearTableGrayscaleImageToAsciiImageConverter {
   override val table: Seq[Char] =
-    "@%#*+=:-. ".toIndexedSeq
+    "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. ".toIndexedSeq
 }

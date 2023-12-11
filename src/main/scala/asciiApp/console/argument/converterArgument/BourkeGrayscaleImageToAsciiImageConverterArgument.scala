@@ -4,7 +4,7 @@ import asciiApp.console.argument.ArgumentWithoutOptions
 import asciiApp.models.image.Image
 import asciiApp.models.pixels.{AsciiPixel, GrayscalePixel}
 import converters.image.ImageToImageConverter
-import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiAsciiImageConverter
+import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiImageConverter
 
 class BourkeGrayscaleImageToAsciiImageConverterArgument
     extends GrayscaleImageToAsciiImageConverterArgument
@@ -15,5 +15,5 @@ class BourkeGrayscaleImageToAsciiImageConverterArgument
 
   override protected def createInstance
     : ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] =
-    new BourkeGrayscaleImageToAsciiAsciiImageConverter
+    new BourkeGrayscaleImageToAsciiImageConverter
 }
