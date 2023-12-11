@@ -1,6 +1,7 @@
 package exporters.image
 
 import asciiApp.models.pixels.AsciiPixel
+import exporters.text.StreamTextExporter
 import helpers.TestWithImages
 import org.scalatest.{BeforeAndAfter, FunSuite}
 
@@ -17,7 +18,8 @@ class StreamAsciiImageExporterTest
   }
 
   test("Export multiple lines to stream") {
-    val exporter = new StreamAsciiImageExporter(testStream)
+    val exporter =
+      new StreamAsciiImageExporter(new StreamTextExporter(testStream))
     exporter.`export`(
       createImage(
         Seq(
@@ -33,7 +35,8 @@ class StreamAsciiImageExporterTest
   }
 
   test("Export image with one pixel to stream") {
-    val exporter = new StreamAsciiImageExporter(testStream)
+    val exporter =
+      new StreamAsciiImageExporter(new StreamTextExporter(testStream))
     exporter.`export`(
       createImage(
         Seq(
@@ -45,7 +48,8 @@ class StreamAsciiImageExporterTest
   }
 
   test("Export multiple rows to stream") {
-    val exporter = new StreamAsciiImageExporter(testStream)
+    val exporter =
+      new StreamAsciiImageExporter(new StreamTextExporter(testStream))
     exporter.`export`(
       createImage(
         Seq(

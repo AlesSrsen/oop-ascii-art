@@ -1,7 +1,8 @@
 package asciiApp.console.argument.exporterArgument
 
 import asciiApp.console.exceptions.MissingArgumentOptionException
-import exporters.image.{FileAsciiImageExporter, StreamAsciiImageExporter}
+import exporters.image.StreamAsciiImageExporter
+import exporters.text.FileTextExporter
 
 import java.io.File
 
@@ -17,7 +18,8 @@ class FileAsciiImageExporterArgument extends AsciiImageExporterArgument {
       throw new MissingArgumentOptionException(
         "No path to output result supplied to: " + argumentName)
     (
-      new FileAsciiImageExporter(new File(argumentOptions.head)),
+      new StreamAsciiImageExporter(
+        new FileTextExporter(new File(argumentOptions.head))),
       argumentOptions.drop(1)
     )
   }

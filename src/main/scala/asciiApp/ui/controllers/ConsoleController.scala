@@ -12,7 +12,8 @@ import asciiApp.models.pixels.{AsciiPixel, GrayscalePixel}
 import asciiApp.ui.views.View
 import converters.image.ImageToImageConverter
 import converters.image.ascii.linear.BourkeGrayscaleImageToAsciiAsciiImageConverter
-import exporters.image.{StdOutAsciiImageExporter, StreamAsciiImageExporter}
+import exporters.image.StreamAsciiImageExporter
+import exporters.text.StdOutTextExporter
 import filters.image.ImageFilter
 import loaders.image.RGBImageLoader
 
@@ -56,9 +57,7 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
         view.error("Invalid argument: " + e.getMessage)
       case e: RuntimeException =>
         throw e
-    } finally {
-      exporters.foreach(exporter => exporter.close())
-    }
+    } finally exporters.foreach(exporter => exporter.close())
   }
 
   private def parseArguments(): Seq[String] = {
@@ -105,7 +104,7 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
   private def getExporters(): Seq[StreamAsciiImageExporter] = {
     var exporters = AsciiImageExporterArgumentGroupInstance.getParsingResult
     if (exporters.isEmpty)
-      exporters :+= new StdOutAsciiImageExporter
+      exporters :+= new StreamAsciiImageExporter(new StdOutTextExporter)
 
     exporters
   }

@@ -10,10 +10,8 @@ import java.io.OutputStream
  * Exports an ascii image to a stream
  * @param outputStream The stream to export to
  */
-class StreamAsciiImageExporter(outputStream: OutputStream)
+class StreamAsciiImageExporter(streamTextExporter: StreamTextExporter)
     extends ImageExporter[Image[AsciiPixel]] {
-
-  private val streamTextExporter = new StreamTextExporter(outputStream)
 
   /**
    * Export an ascii image to a stream

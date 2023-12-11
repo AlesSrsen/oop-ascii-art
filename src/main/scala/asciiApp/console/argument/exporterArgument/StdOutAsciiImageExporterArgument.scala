@@ -1,7 +1,8 @@
 package asciiApp.console.argument.exporterArgument
 
 import asciiApp.console.argument.ArgumentWithoutOptions
-import exporters.image.{StdOutAsciiImageExporter, StreamAsciiImageExporter}
+import exporters.image.StreamAsciiImageExporter
+import exporters.text.StdOutTextExporter
 
 class StdOutAsciiImageExporterArgument
     extends AsciiImageExporterArgument
@@ -9,5 +10,5 @@ class StdOutAsciiImageExporterArgument
   override def argumentName: String = "--output-console"
 
   override protected def createInstance: StreamAsciiImageExporter =
-    new StdOutAsciiImageExporter
+    new StreamAsciiImageExporter(new StdOutTextExporter)
 }
