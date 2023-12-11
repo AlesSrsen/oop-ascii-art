@@ -1,4 +1,4 @@
-package asciiApp.ui.views.generic
+package asciiApp.ui.views.pages.generic
 
 import asciiApp.ui.views.pages.generic.InfoResponse
 import org.scalatest.FunSuite

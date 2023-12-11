@@ -33,10 +33,5 @@ class PixelGrid[T <: Pixel](private val pixels: Seq[Seq[T]]) {
   def mapRows[O](f: Seq[T] => Seq[O]): Seq[Seq[O]] =
     pixels.map(f)
 
-  def updated(row: Int, col: Int, pixel: T): PixelGrid[T] = {
-    val newPixels = pixels.updated(row, pixels(row).updated(col, pixel))
-    new PixelGrid(newPixels)
-  }
-
   def apply(row: Int, col: Int): T = pixels(row)(col)
 }

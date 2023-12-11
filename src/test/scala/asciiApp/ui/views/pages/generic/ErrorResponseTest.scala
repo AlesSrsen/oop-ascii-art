@@ -1,4 +1,4 @@
-package asciiApp.ui.views.generic
+package asciiApp.ui.views.pages.generic
 
 import asciiApp.ui.views.pages.generic.ErrorResponse
 import org.scalatest.FunSuite
@@ -18,6 +18,15 @@ class ErrorResponseTest extends FunSuite {
     assert(
       errorResponse
         .render() == "[ERROR]" + System.lineSeparator() + "" + System
+        .lineSeparator()
+    )
+  }
+
+  test("Default message") {
+    val errorResponse = new ErrorResponse()
+    assert(
+      errorResponse
+        .render() == "[ERROR]" + System.lineSeparator() + "Undefined error" + System
         .lineSeparator()
     )
   }

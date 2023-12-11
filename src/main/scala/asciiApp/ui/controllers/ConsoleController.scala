@@ -66,8 +66,7 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
     )
 
     if (restOfArguments.nonEmpty)
-      throw new InvalidArgumentException(
-        "Invalid argument: " + restOfArguments.head)
+      throw new InvalidArgumentException(restOfArguments.head)
 
     restOfArguments
   }
@@ -75,7 +74,7 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
   private def getLoader(): RGBImageLoader = {
     var loader = RGBImageLoaderArgumentGroupInstance.getParsingResult
     if (loader.isEmpty)
-      throw new MissingArgumentException("Missing loader argument")
+      throw new MissingArgumentException("No loader specified")
 
     if (loader.size > 1)
       throw new InvalidArgumentException("Too many loaders supplied")

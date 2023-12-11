@@ -2,13 +2,15 @@ package asciiApp.ui.views
 
 import asciiApp.ui.views.pages.generic.{ErrorResponse, InfoResponse, SuccessResponse}
 
-class ConsoleView() extends View {
+import java.io.OutputStream
+
+class ConsoleView(output: OutputStream = System.out) extends View {
   override def error(message: String): Unit =
-    print(new ErrorResponse(message).render())
+    output.write(new ErrorResponse(message).render().getBytes("UTF-8"))
 
   override def info(message: String): Unit =
-    print(new InfoResponse(message).render())
+    output.write(new InfoResponse(message).render().getBytes("UTF-8"))
 
   override def success(message: String): Unit =
-    print(new SuccessResponse(message).render())
+    output.write(new SuccessResponse(message).render().getBytes("UTF-8"))
 }
