@@ -33,6 +33,7 @@ trait TestWithFiles {
 
   def deleteFile(file: File): Unit = {
     if (!file.exists()) return
+    file.delete()
     file.deleteOnExit()
   }
 
