@@ -9,6 +9,6 @@ class StdOutAsciiImageExporterArgument
     with ArgumentWithoutOptions[StreamAsciiImageExporter] {
   override def argumentName: String = "--output-console"
 
-  override protected def createInstance: StreamAsciiImageExporter =
+  override protected def createInstance(): StreamAsciiImageExporter =
     new StreamAsciiImageExporter(new StdOutTextExporter)
 }

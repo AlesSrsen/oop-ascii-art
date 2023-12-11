@@ -11,6 +11,6 @@ class InvertGrayscaleImageFilterArgument
     with ArgumentWithoutOptions[ImageFilter[Image[GrayscalePixel]]] {
   override def argumentName: String = "--invert"
 
-  override protected def createInstance: ImageFilter[Image[GrayscalePixel]] =
+  override protected def createInstance(): ImageFilter[Image[GrayscalePixel]] =
     new InvertGrayscaleImageFilter
 }

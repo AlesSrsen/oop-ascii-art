@@ -8,15 +8,11 @@ import converters.image.ImageToImageConverter
 
 class GrayscaleImageToAsciiImageConverterArgumentGroup
     extends ArgumentGroup[
-      ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]] {
-
-  override protected def arguments()
-    : Seq[GrayscaleImageToAsciiImageConverterArgument] =
-    Seq(
-      new BourkeGrayscaleImageToAsciiImageConverterArgument,
-      new BourkeShortGrayscaleImageToAsciiImageConverterArgument,
-      new DefaultNonlinearGrayscaleImageToAsciiImageConverterArgument,
-      new OutliersNonlinearGrayscaleImageToAsciiImageConverterArgument,
-      new CustomLinearGrayscaleImageToAsciiImageConverterArgument
-    )
-}
+      ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]]](
+      Seq(
+        new BourkeGrayscaleImageToAsciiImageConverterArgument,
+        new ShortBourkeGrayscaleImageToAsciiImageConverterArgument,
+        new DefaultNonlinearGrayscaleImageToAsciiImageConverterArgument,
+        new OutliersNonlinearGrayscaleImageToAsciiImageConverterArgument,
+        new CustomTableGrayscaleImageToAsciiImageConverterArgument
+      )) {}

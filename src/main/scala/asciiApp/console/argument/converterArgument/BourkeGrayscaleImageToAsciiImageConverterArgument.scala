@@ -13,7 +13,7 @@ class BourkeGrayscaleImageToAsciiImageConverterArgument
 
   override def argumentName: String = "--table-bourke"
 
-  override protected def createInstance
+  override protected def createInstance()
     : ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] =
     new BourkeGrayscaleImageToAsciiImageConverter
 }

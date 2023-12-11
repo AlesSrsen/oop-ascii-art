@@ -1,9 +1,17 @@
 package asciiApp.ui.views
 
-import asciiApp.ui.views.pages.generic.{ErrorResponse, InfoResponse, SuccessResponse}
+import asciiApp.ui.views.pages.generic.{
+  ErrorResponse,
+  InfoResponse,
+  SuccessResponse
+}
 
 import java.io.OutputStream
 
+/**
+ * Console view implementation
+ * @param output output stream
+ */
 class ConsoleView(output: OutputStream = System.out) extends View {
   override def error(message: String): Unit =
     output.write(new ErrorResponse(message).render().getBytes("UTF-8"))

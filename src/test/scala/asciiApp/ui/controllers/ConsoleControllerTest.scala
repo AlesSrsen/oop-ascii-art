@@ -16,7 +16,7 @@ class ConsoleControllerTest extends FunSuite with TestWithFiles {
         getImageFromResources("testing_grid_image.png").getAbsolutePath,
         "--output-file",
         result.getAbsolutePath,
-        "--table-bourke-short",
+        "--table-short-bourke",
         "--flip",
         "y"
       )
@@ -36,7 +36,7 @@ class ConsoleControllerTest extends FunSuite with TestWithFiles {
       Seq(
         "--output-file",
         result.getAbsolutePath,
-        "--table-bourke-short",
+        "--table-short-bourke",
         "--flip",
         "y"
       )
@@ -65,7 +65,7 @@ class ConsoleControllerTest extends FunSuite with TestWithFiles {
         getImageFromResources("testing_grid_image.png").getAbsolutePath,
         "--output-file",
         result.getAbsolutePath,
-        "--table-bourke-short",
+        "--table-short-bourke",
         "--flip",
         "y",
         "--invalid-argument"

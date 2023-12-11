@@ -9,7 +9,7 @@ import java.io.File
  * @param image File to load
  * @param javaImageToRGBImageConverter Converter used to convert a Java BufferedImage to an Image[RGBPixel]
  */
-class PngRGBImageFileLoader(
+class PNGRGBImageFileLoader(
   image: File,
   javaImageToRGBImageConverter: BufferedImageToRGBImageConverter =
     new BufferedImageToRGBImageConverter)

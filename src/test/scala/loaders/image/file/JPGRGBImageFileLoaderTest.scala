@@ -5,13 +5,13 @@ import helpers.{TestWithFiles, TestWithImages}
 import org.scalatest.FunSuite
 import org.scalatest.Matchers.{be, convertToAnyShouldWrapper}
 
-class JpgRGBImageFileLoaderTest
+class JPGRGBImageFileLoaderTest
     extends FunSuite
     with TestWithFiles
     with TestWithImages {
   test("Load Image[RGBPixel] from jpg file") {
     val image =
-      new JpgRGBImageFileLoader(getImageFromResources("testing_grid_image.jpg"))
+      new JPGRGBImageFileLoader(getImageFromResources("testing_grid_image.jpg"))
         .load()
 
     image.width should be(5)
@@ -43,14 +43,14 @@ class JpgRGBImageFileLoaderTest
 
   test("Try to load not existing file") {
     assertThrows[IllegalArgumentException] {
-      new JpgRGBImageFileLoader(getRandomNonExistingTempFile()).load()
+      new JPGRGBImageFileLoader(getRandomNonExistingTempFile()).load()
     }
   }
 
   test("Try to load file with wrong extension") {
     val tempFile = getRandomExistingTempFile(".image")
     assertThrows[IllegalArgumentException] {
-      new JpgRGBImageFileLoader(tempFile).load()
+      new JPGRGBImageFileLoader(tempFile).load()
     }
     deleteFile(tempFile)
   }

@@ -5,13 +5,13 @@ import helpers.{TestWithFiles, TestWithImages}
 import org.scalatest.FunSuite
 import org.scalatest.Matchers.{be, convertToAnyShouldWrapper}
 
-class GifRGBImageFileLoaderTest
+class GIFRGBImageFileLoaderTest
     extends FunSuite
     with TestWithFiles
     with TestWithImages {
   test("Load Image[RGBPixel] from gif file") {
     val image =
-      new GifRGBImageFileLoader(getImageFromResources("testing_grid_image.gif"))
+      new GIFRGBImageFileLoader(getImageFromResources("testing_grid_image.gif"))
         .load()
 
     image.width should be(5)
@@ -42,14 +42,14 @@ class GifRGBImageFileLoaderTest
 
   test("Try to load not existing file") {
     assertThrows[IllegalArgumentException] {
-      new GifRGBImageFileLoader(getRandomNonExistingTempFile()).load()
+      new GIFRGBImageFileLoader(getRandomNonExistingTempFile()).load()
     }
   }
 
   test("Try to load file with wrong extension") {
     val tempFile = getRandomExistingTempFile(".image")
     assertThrows[IllegalArgumentException] {
-      new GifRGBImageFileLoader(tempFile).load()
+      new GIFRGBImageFileLoader(tempFile).load()
     }
     deleteFile(tempFile)
   }

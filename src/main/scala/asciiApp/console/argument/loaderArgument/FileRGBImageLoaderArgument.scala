@@ -2,7 +2,7 @@ package asciiApp.console.argument.loaderArgument
 
 import asciiApp.console.exceptions.{InvalidArgumentOptionException, MissingArgumentOptionException}
 import loaders.image.RGBImageLoader
-import loaders.image.file.{GifRGBImageFileLoader, JpgRGBImageFileLoader, PngRGBImageFileLoader}
+import loaders.image.file.{GIFRGBImageFileLoader, JPGRGBImageFileLoader, PNGRGBImageFileLoader}
 
 import java.io.File
 import java.nio.file.Paths
@@ -26,9 +26,9 @@ class FileRGBImageLoaderArgument extends RGBImageLoaderArgument {
       .split("\\.")
       .last
     (extension match {
-      case "png" => new PngRGBImageFileLoader(imageFile)
-      case "gif" => new GifRGBImageFileLoader(imageFile)
-      case "jpg" => new JpgRGBImageFileLoader(imageFile)
+      case "png" => new PNGRGBImageFileLoader(imageFile)
+      case "gif" => new GIFRGBImageFileLoader(imageFile)
+      case "jpg" => new JPGRGBImageFileLoader(imageFile)
       case _ =>
         throw new InvalidArgumentOptionException(
           "Wrong file extension: " + Paths

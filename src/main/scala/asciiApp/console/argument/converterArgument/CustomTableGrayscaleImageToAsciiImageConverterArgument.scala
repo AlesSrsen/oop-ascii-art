@@ -6,7 +6,7 @@ import asciiApp.models.pixels.{AsciiPixel, GrayscalePixel}
 import converters.image.ImageToImageConverter
 import converters.image.ascii.linear.CustomTableGrayscaleImageToAsciiImageConverter
 
-class CustomLinearGrayscaleImageToAsciiImageConverterArgument
+class CustomTableGrayscaleImageToAsciiImageConverterArgument
     extends GrayscaleImageToAsciiImageConverterArgument {
 
   override def specification(): Seq[String] =

@@ -17,7 +17,24 @@ import exporters.text.StdOutTextExporter
 import filters.image.ImageFilter
 import loaders.image.RGBImageLoader
 
+/**
+ * Controller for the console application
+ * Parses arguments and runs the application
+ * Also handles errors.
+ *
+ * By default there has to be a loader specified, otherwise an error is thrown.
+ * If no filters are specified, no filters are used.
+ * If no converter is specified, BourkeGrayscaleImageToAsciiImageConverter is used.
+ * If no exporters are specified, Image is exported to the console.
+ *
+ * @param args Arguments passed to the application
+ * @param view View used to display errors
+ */
 class ConsoleController(args: Seq[String], view: View) extends Controller {
+
+  /**
+   * Argument groups used to parse arguments
+   */
   private val RGBImageLoaderArgumentGroupInstance =
     new RGBImageLoaderArgumentGroup
   private val GrayscaleImageFilterArgumentGroupInstance =
@@ -27,6 +44,9 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
   private val AsciiImageExporterArgumentGroupInstance =
     new AsciiImageExporterArgumentGroup
 
+  /**
+   * All argument groups in sequence, to be parsed in order
+   */
   private val argumentGroups: Seq[ArgumentGroup[_]] = Seq(
     RGBImageLoaderArgumentGroupInstance,
     GrayscaleImageFilterArgumentGroupInstance,
@@ -34,6 +54,9 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
     AsciiImageExporterArgumentGroupInstance
   )
 
+  /**
+   * Parses arguments and runs the application using AsciiImageFromImage facade
+   */
   override def run(): Unit = {
     var exporters = Seq.empty[StreamAsciiImageExporter]
     try {
@@ -60,6 +83,12 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
     } finally exporters.foreach(exporter => exporter.close())
   }
 
+  /**
+   * Parses the arguments passed to the application using the argument groups defined
+   * @throws MissingArgumentException if there are any arguments left after parsing
+   *                                  Other exceptions are thrown by the argument group, and arguments themselves
+   * @return remaining arguments
+   */
   private def parseArguments(): Seq[String] = {
     val restOfArguments = argumentGroups.foldLeft(args)(
       (args, argumentGroup) => argumentGroup.parse(args)
@@ -71,6 +100,13 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
     restOfArguments
   }
 
+  /**
+   * Gets the loader from the argument group
+   * @throws MissingArgumentException if no loader is specified
+   * @throws InvalidArgumentException if too many loaders are specified
+   *                                  Other exceptions are thrown by the argument group, and arguments themselves
+   * @return loader
+   */
   private def getLoader(): RGBImageLoader = {
     var loader = RGBImageLoaderArgumentGroupInstance.getParsingResult
     if (loader.isEmpty)
@@ -82,11 +118,23 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
     loader.head
   }
 
+  /**
+   * Gets the filters from the argument group
+   * Exceptions can be thrown by the argument group, and arguments themselves
+   * @return filters
+   */
   private def getFilters(): Seq[ImageFilter[Image[GrayscalePixel]]] = {
     var filters = GrayscaleImageFilterArgumentGroupInstance.getParsingResult
     filters
   }
 
+  /**
+   * Gets the converter from the argument group
+   * If no converter is specified, BourkeGrayscaleImageToAsciiImageConverter is used
+   * @throws InvalidArgumentException if too many converters are specified
+   *                                  Other exceptions are thrown by the argument group, and arguments themselves
+   * @return converter
+   */
   private def getConverter()
     : ImageToImageConverter[Image[GrayscalePixel], Image[AsciiPixel]] = {
     var converter =
@@ -100,6 +148,12 @@ class ConsoleController(args: Seq[String], view: View) extends Controller {
     converter.head
   }
 
+  /**
+   * Gets the exporters from the argument group
+   * If no exporters are specified, Image is exported to the console
+   * Exceptions can be thrown by the argument group, and arguments themselves
+   * @return exporters
+   */
   private def getExporters(): Seq[StreamAsciiImageExporter] = {
     var exporters = AsciiImageExporterArgumentGroupInstance.getParsingResult
     if (exporters.isEmpty)

@@ -22,13 +22,13 @@ them. (https://courses.fit.cvut.cz/BI-OOP/projects/ASCII-art.html)
 In the root directory outside the sbt shell:
 
 ```bash
-sbt "run --image ./src/main/resources/images/linear_gradient_rectangle.png --output-file ./out/image.txt --output-console --table-bourke-short --flip y"
+sbt "run --image ./src/main/resources/images/linear_gradient_rectangle.png --output-file ./out/image.txt --output-console --table-short-bourke --flip y"
 ```
 
 In sbt shell in the root directory:
 
 ```sbtshell
-run --image "./src/main/resources/images/linear_gradient_rectangle.png" --output-file "./out/image.txt" --output-console --table-bourke-short --flip y
+run --image "./src/main/resources/images/linear_gradient_rectangle.png" --output-file "./out/image.txt" --output-console --table-short-bourke --flip y
 ```
 
 ## Available arguments
@@ -59,7 +59,7 @@ By default `--table-bourke` is used.
 
 ```
 --table-bourke
---table-bourke-short
+--table-short-bourke
 --nonlinear-default
 --nonlinear-outliers
 --table-custom <table>

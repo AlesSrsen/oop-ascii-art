@@ -6,7 +6,7 @@ import asciiApp.models.pixels.GrayscalePixel
 import filters.image.ImageFilter
 import filters.image.gray.BrightnessGrayscaleImageFilter
 
-class BrightnessImageFilterArgument extends GrayscaleImageFilterArgument {
+class BrightnessGrayscaleImageFilterArgument extends GrayscaleImageFilterArgument {
   override def specification(): Seq[String] =
     super.specification().appended("<-255/+255>")
 
@@ -23,7 +23,8 @@ class BrightnessImageFilterArgument extends GrayscaleImageFilterArgument {
         )
       case None =>
         throw new InvalidArgumentOptionException(
-          "Invalid brightness amount: " + argumentOptions.head)
+          "Invalid brightness amount: " + argumentOptions.head,
+          new NumberFormatException())
     }
   }
 }
