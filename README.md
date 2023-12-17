@@ -22,13 +22,13 @@ them. (https://courses.fit.cvut.cz/BI-OOP/projects/ASCII-art.html)
 In the root directory outside the sbt shell:
 
 ```bash
-sbt "run --image ./src/main/resources/images/linear_gradient_rectangle.png --output-file ./out/image.txt --output-console --table-short-bourke --flip y"
+sbt "run --image ./src/main/resources/images/linear_gradient_rectangle.png --output-file ./out/image.txt --rotate -270 --output-console --table-short-bourke --flip y"
 ```
 
 In sbt shell in the root directory:
 
 ```sbtshell
-run --image "./src/main/resources/images/linear_gradient_rectangle.png" --output-file "./out/image.txt" --output-console --table-short-bourke --flip y
+run --image "./src/main/resources/images/linear_gradient_rectangle.png" --output-file "./out/image.txt" --rotate -270 --output-console --table-short-bourke --flip y
 ```
 
 ## Available arguments
@@ -50,6 +50,7 @@ There must be exactly one loader specified.
 --flip <x/y>
 --brightness <-255/+255>
 --invert
+--rotate <-360/+360> Must be multiple of 90
 ```
 
 ### Converters

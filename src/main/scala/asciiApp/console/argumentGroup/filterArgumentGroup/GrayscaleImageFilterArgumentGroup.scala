@@ -1,11 +1,6 @@
 package asciiApp.console.argumentGroup.filterArgumentGroup
 
-import asciiApp.console.argument.filterArgument.{
-  BrightnessGrayscaleImageFilterArgument,
-  FlipGrayscaleImageFilterArgument,
-  GrayscaleImageFilterArgument,
-  InvertGrayscaleImageFilterArgument
-}
+import asciiApp.console.argument.filterArgument.{BrightnessGrayscaleImageFilterArgument, FlipGrayscaleImageFilterArgument, InvertGrayscaleImageFilterArgument, RotateGrayscaleImageFilterArgument}
 import asciiApp.console.argumentGroup.ArgumentGroup
 import asciiApp.models.image.Image
 import asciiApp.models.pixels.GrayscalePixel
@@ -16,4 +11,6 @@ class GrayscaleImageFilterArgumentGroup
       Seq(
         new FlipGrayscaleImageFilterArgument,
         new BrightnessGrayscaleImageFilterArgument,
-        new InvertGrayscaleImageFilterArgument)) {}
+        new InvertGrayscaleImageFilterArgument,
+        new RotateGrayscaleImageFilterArgument
+      )) {}

@@ -17,7 +17,7 @@ class GrayscalePixelOperator extends PixelOperator[GrayscalePixel] {
    * @return GrayscalePixel that represents the average
    */
   override def average(a: GrayscalePixel, b: GrayscalePixel): GrayscalePixel =
-    GrayscalePixel.corrected((a.gray + b.gray) / 2)
+    GrayscalePixel.corrected(((a.gray + b.gray) / 2) + (a.gray + b.gray) % 2)
 
   /**
    * Returns the sum of two GrayscalePixels
