@@ -85,7 +85,7 @@ class CustomTableGrayscaleImageToAsciiImageConverterTest
 
     assertThrows[IllegalArgumentException] {
       new CustomTableGrayscaleImageToAsciiImageConverter(chars)
-          .convert(image)
+        .convert(image)
     }
   }
 

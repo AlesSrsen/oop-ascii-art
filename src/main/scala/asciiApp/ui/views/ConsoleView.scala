@@ -1,10 +1,6 @@
 package asciiApp.ui.views
 
-import asciiApp.ui.views.pages.generic.{
-  ErrorResponse,
-  InfoResponse,
-  SuccessResponse
-}
+import asciiApp.ui.views.pages.generic.{ErrorResponse, InfoResponse, SuccessResponse}
 
 import java.io.OutputStream
 

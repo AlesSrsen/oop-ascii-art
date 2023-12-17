@@ -1,9 +1,8 @@
 package asciiApp.console.argumentGroup.exporterArgumentGroup
 
 import asciiApp.models.image.Image
-import asciiApp.models.pixels.{AsciiPixel, GrayscalePixel}
+import asciiApp.models.pixels.AsciiPixel
 import exporters.image.ImageExporter
-import filters.image.ImageFilter
 import org.scalatest.FunSuite
 
 class AsciiImageExporterArgumentGroupTest extends FunSuite {

@@ -82,6 +82,7 @@ class ShortBourkeGrayscaleImageToAsciiImageConverterTest
         .convert(image)
 
     assert(
-      convertedImage.pixels.getPixelSeq.flatten.map(_.symbol) == Seq('@', '#', '+', '=', '-', ' '))
+      convertedImage.pixels.getPixelSeq.flatten.map(_.symbol) == Seq('@', '#',
+        '+', '=', '-', ' '))
   }
 }

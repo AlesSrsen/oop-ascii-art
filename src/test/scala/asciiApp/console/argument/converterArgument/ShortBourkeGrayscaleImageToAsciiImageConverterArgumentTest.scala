@@ -6,7 +6,8 @@ import converters.image.ImageToImageConverter
 import converters.image.ascii.linear.ShortBourkeGrayscaleImageToAsciiImageConverter
 import org.scalatest.FunSuite
 
-class ShortBourkeGrayscaleImageToAsciiImageConverterArgumentTest extends FunSuite {
+class ShortBourkeGrayscaleImageToAsciiImageConverterArgumentTest
+    extends FunSuite {
   test("Parse argument") {
     val argument = new ShortBourkeGrayscaleImageToAsciiImageConverterArgument
     val args = Seq("--table-short-bourke")

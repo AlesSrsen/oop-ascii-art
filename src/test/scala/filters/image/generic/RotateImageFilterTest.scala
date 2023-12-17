@@ -16,14 +16,8 @@ class RotateImageFilterTest extends FunSuite with TestWithImages {
 
   val rotatedBy90Degrees: Image[StubPixel] = createImage(
     Vector(
-      Vector(
-        new StubPixel(30),
-        new StubPixel(200),
-        new StubPixel(0)),
-      Vector(
-        new StubPixel(50),
-        new StubPixel(250),
-        new StubPixel(100))
+      Vector(new StubPixel(30), new StubPixel(200), new StubPixel(0)),
+      Vector(new StubPixel(50), new StubPixel(250), new StubPixel(100))
     )
   )
 
@@ -37,14 +31,8 @@ class RotateImageFilterTest extends FunSuite with TestWithImages {
 
   val rotatedBy270Degrees: Image[StubPixel] = createImage(
     Vector(
-      Vector(
-        new StubPixel(100),
-        new StubPixel(250),
-        new StubPixel(50)),
-      Vector(
-        new StubPixel(0),
-        new StubPixel(200),
-        new StubPixel(30))
+      Vector(new StubPixel(100), new StubPixel(250), new StubPixel(50)),
+      Vector(new StubPixel(0), new StubPixel(200), new StubPixel(30))
     )
   )
 

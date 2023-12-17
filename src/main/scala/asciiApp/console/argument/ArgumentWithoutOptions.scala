@@ -6,7 +6,8 @@ package asciiApp.console.argument
  */
 trait ArgumentWithoutOptions[T] extends Argument[T] {
   override protected def argOptionsReducer(
-    argumentOptions: Seq[String]): (T, Args) = (createInstance(), argumentOptions)
+    argumentOptions: Seq[String]): (T, Args) =
+    (createInstance(), argumentOptions)
 
   /**
    * Argument without options should create an instance of the result type, since they do not do any additional parsing

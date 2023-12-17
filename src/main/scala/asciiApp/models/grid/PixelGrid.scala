@@ -30,16 +30,16 @@ class PixelGrid[T <: Pixel](private val pixels: Seq[Seq[T]]) {
   def width: Int = pixels.head.size
 
   /**
-   * Returns a sequence of pixels.
-   * @return Sequence of pixels
-   */
-  def getPixelSeq: Seq[Seq[T]] = pixels
-
-  /**
    * Returns a reversed sequence of pixels.
    * @return
    */
   def reverse(): Seq[Seq[T]] = getPixelSeq.reverse
+
+  /**
+   * Returns a sequence of pixels.
+   * @return Sequence of pixels
+   */
+  def getPixelSeq: Seq[Seq[T]] = pixels
 
   /**
    * Returns a reversed grid of pixels.
@@ -55,15 +55,6 @@ class PixelGrid[T <: Pixel](private val pixels: Seq[Seq[T]]) {
    */
   def mapPixelsGrid[O <: Pixel](f: T => O): PixelGrid[O] =
     new PixelGrid(mapPixels(f))
-
-  /**
-   * Mapping of the rows to another PixelGrid
-   * @param f Mapping function
-   * @tparam O Type of the new pixels
-   * @return New PixelGrid
-   */
-  def mapRowsGrid[O <: Pixel](f: Seq[T] => Seq[O]): PixelGrid[O] =
-    new PixelGrid(mapRows(f))
 
   /**
    * Mapping of the pixels to another sequence
@@ -82,6 +73,15 @@ class PixelGrid[T <: Pixel](private val pixels: Seq[Seq[T]]) {
    */
   def mapRows[O](f: Seq[T] => Seq[O]): Seq[Seq[O]] =
     pixels.map(f)
+
+  /**
+   * Mapping of the rows to another PixelGrid
+   * @param f Mapping function
+   * @tparam O Type of the new pixels
+   * @return New PixelGrid
+   */
+  def mapRowsGrid[O <: Pixel](f: Seq[T] => Seq[O]): PixelGrid[O] =
+    new PixelGrid(mapRows(f))
 
   /**
    * Returns a pixel at given position.

@@ -12,13 +12,6 @@ class StubPixelOperator extends PixelOperator[StubPixel] {
   override def min(): StubPixel = StubPixel.min()
 
   /**
-   * Returns the maximum value of a Pixel
-   *
-   * @return Pixel that represents maximum value
-   */
-  override def max(): StubPixel = StubPixel.max()
-
-  /**
    * Returns the average value of two Pixels
    *
    * @param a Pixel
@@ -66,4 +59,11 @@ class StubPixelOperator extends PixelOperator[StubPixel] {
    */
   override def inverse(a: StubPixel): StubPixel =
     StubPixel.corrected(max().value - a.value)
+
+  /**
+   * Returns the maximum value of a Pixel
+   *
+   * @return Pixel that represents maximum value
+   */
+  override def max(): StubPixel = StubPixel.max()
 }

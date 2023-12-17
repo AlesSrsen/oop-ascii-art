@@ -1,6 +1,5 @@
 package asciiApp.ui.views.pages.generic
 
-import asciiApp.ui.views.pages.generic.InfoResponse
 import org.scalatest.FunSuite
 
 class InfoResponseTest extends FunSuite {

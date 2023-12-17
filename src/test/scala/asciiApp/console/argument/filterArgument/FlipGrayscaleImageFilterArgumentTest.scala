@@ -5,7 +5,6 @@ import asciiApp.models.image.Image
 import asciiApp.models.pixels.GrayscalePixel
 import filters.image.ImageFilter
 import filters.image.generic.flip.{XFlipImageFilter, YFlipImageFilter}
-import filters.image.gray.BrightnessGrayscaleImageFilter
 import org.scalatest.FunSuite
 
 class FlipGrayscaleImageFilterArgumentTest extends FunSuite {

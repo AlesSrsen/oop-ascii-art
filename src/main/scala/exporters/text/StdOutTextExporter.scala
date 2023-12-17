@@ -12,7 +12,6 @@ class StdOutTextExporter(stdOutOutputStream: OutputStream = System.out)
    * Do not close standard output.
    * Closing it could cause problems for other parts of the application.
    */
-  override def close(): Unit = {
+  override def close(): Unit =
     closed = true
-  }
 }
